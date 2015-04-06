@@ -20,9 +20,8 @@ group :test do
   gem 'rack-test'
   gem 'rspec', '~>3.0'
   gem 'capybara'
-end
-
-group :test, :development do
+  gem 'database_cleaner'
+  gem 'selenium-webdriver', '~> 2.45.0'
   gem 'factory_girl'
   gem 'faker'
 end

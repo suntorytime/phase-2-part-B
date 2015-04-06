@@ -12,9 +12,29 @@ require 'shoulda-matchers'
 require 'rack/test'
 require 'capybara'
 require 'capybara/rspec'
+require 'database_cleaner'
+require 'selenium-webdriver'
+require 'factory_girl'
+require 'faker'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+
+
+  # DatabaseCleaner Setup
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) { DatabaseCleaner.strategy = :truncation }
+
+  config.before(:each) { DatabaseCleaner.start }
+  config.after(:each) { DatabaseCleaner.clean }
+
+
+  # FactoryGirl Setup
+  config.include FactoryGirl::Syntax::Methods
 end
 
 def app
