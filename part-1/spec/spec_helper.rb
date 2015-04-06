@@ -17,6 +17,9 @@ require 'selenium-webdriver'
 require 'factory_girl'
 require 'faker'
 
+path_to_factories = File.expand_path('../factories', __FILE__)
+Dir["#{path_to_factories}/*.rb"].each { |file| require file }
+
 RSpec.configure do |config|
   config.include Rack::Test::Methods
 
