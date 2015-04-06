@@ -1,0 +1,9 @@
+<section id="sidebar" class="sidebar">
+  <a href="/posts/new" class="button_anchor">Share Your Thoughts</a>
+</section>
+
+<section id="posts">
+  <% @posts.each do |post| %>
+    <%= erb :'posts/_post', { layout: false, locals: {:post => post }} %>
+  <% end %>
+</section>
