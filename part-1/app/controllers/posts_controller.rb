@@ -1,5 +1,5 @@
 get "/posts" do
-  @posts = Post.all
+  @posts = Post.order("created_at DESC")
   erb :'posts/index'
 end
 
