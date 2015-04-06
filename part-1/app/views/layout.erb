@@ -10,13 +10,18 @@
 </head>
 <body>
 
-  <header>
-    Share Anything
+  <header class="float_wrapper">
+    <h1 class="left">Share Anything</h1>
+    <p class="right"><a href="/">home</a></p>
   </header>
 
-  <main>
+  <main class="float_wrapper">
     <%= yield %>
   </main>
+
+  <footer>
+    <p>Share Anything</p>
+  </footer>
 
 </body>
 </html>

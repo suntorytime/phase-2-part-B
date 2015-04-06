@@ -6,7 +6,7 @@
   <input type="text" name="post[author_name]" value="<%= post.try(:name) %>"><br>
 
   <label for="post[body]">Body:</label><br>
-  <input type="text" name="post[body]" value="<%= post.try(:body) %>"><br>
+  <textarea name="post[body]"><%= post.try(:body) %></textarea><br>
 
   <input type="submit" name="submit" value="Submit Post"><br>
 </form>
