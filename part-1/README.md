@@ -10,7 +10,7 @@ In Part 1 we'll take a functioning Sinatra application and enhance the user expe
 2. User clicks on the "Share Your Thoughts" link.
 3. User is taken to a new page with a form.
 4. User fills out and submits the form.
-5. User is taken to a new page where the saved post is shone.
+5. User is taken to a new page where the saved post is displayed.
 
 **Future Site**. Our enhancements will make it so the user never leaves the homepage.  All the requests will be AJAX requests, and we'll update the DOM based on the responses.  After the site is updated, here's what the user experience will be.
 
