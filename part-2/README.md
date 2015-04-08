@@ -12,7 +12,12 @@ We won't run the tests from the command line.  Instead we'll run them in the bro
 
 ## Releases
 ### Release 0: Student
-We'll start by focusing on the tests describing our student (see `spec/student.js`).  To run the tests, open the file `SpecRunner.html` in a browser. On the command line navigate to the `part-2` directory and then run `$ open SpecRunner.html`; this should open the HTML file in the default browser.
+We'll start by focusing on the tests describing our student (see `spec/student.js`).  To run the tests, open the file `SpecRunner.html` in a browser. On the command line navigate to the `part-2` directory and then run ...
+
+```
+$ open SpecRunner.html
+```
+... this should open the HTML file in the default browser.
 
 When the page loads, the tests will run—to begin, all of them will be failing.  Writing code in the file `student.js`, work through the tests until all of the tests for the student pass.
 
