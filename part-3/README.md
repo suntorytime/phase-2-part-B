@@ -104,6 +104,7 @@ We want to validate our models before attempting to write to the database.  Add 
 **Bid**
 - A bid's auction must exist.
 - A bid's bidder must exist.
+- A bid must have an amount.
 - A user can have only one bid per auction.
 - A user cannot bid in an auction they created.
 
