@@ -45,9 +45,10 @@ The models and method calls are listed alphabetically; you might need to write t
 
 **Auction**
 - `auction.bidders` returns the users who have bid in the auction.
+- `auction.bids` returns the bids placed for the auction.
 - `auction.item` returns the item listed in the auction.
 - `auction.lister` returns the user who created the auction
-- `auction.received_bids` returns the bids placed for the auction.
+
 
 **Bid**
 - `bid.auction` returns the auction in which the bid was placed.
@@ -71,18 +72,20 @@ Once the associations have been written, let's add some additional behaviors to 
 
 The models and method calls are listed alphabetically; it might be easier to write them in a different order.
 
-**Auction**
+**Auction Class**
 - `Auction.completed` returns all the auctions that have ended.
-- `auction.highest_bid` returns the bid with the highest amount for the auction.
-- `auction.highest_bidder` returns the user who placed the highest bid for the auction.
 - `Auction.live` returns all the auctions currently running.
 - `Auction.scheduled` returns all the auctions that have yet to begin.
 
-**Bid**
+**Auction Instances**
+- `auction.highest_bid` returns the bid with the highest amount for the auction.
+- `auction.highest_bidder` returns the user who placed the highest bid for the auction.
+
+**Bid Class**
 - `Bid.highest` returns the bid with the highest amount.
 - `Bid.highest_bidder` returns the user who placed the highest bid.
 
-**User**
+**User Instances**
 - `user.completed_auctions` returns the auctions created by the user that have ended.
 - `user.live_auctions` returns the auctions created by the user that are currently running.
 - `user.scheduled_auctions` returns the auctions created by the user that have yet to begin.
