@@ -4,5 +4,6 @@ FactoryGirl.define do
     password "password"
 
     factory :bidder
+    factory :lister
   end
 end

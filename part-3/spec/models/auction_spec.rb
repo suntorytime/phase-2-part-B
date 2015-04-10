@@ -2,7 +2,7 @@ require_relative "../spec_helper"
 
 describe Auction do
   describe "model associations" do
-    before(:all) do
+    before(:each) do
       @tom = create(:user, { username: "tom" })
       @jodie = create(:user, { username: "jodie" })
 
@@ -27,6 +27,32 @@ describe Auction do
 
     it "returns the user who listed the auction" do
       expect(@auction.lister).to eq @tom
+    end
+  end
+
+  describe "additional model behaviors" do
+    before(:each) do
+      @past_auction = create(:past_auction)
+      @live_auction = create(:live_auction)
+      @future_auction = create(:future_auction)
+    end
+
+    describe ".completed" do
+      it "returns all the auctions that have ended" do
+        expect(Auction.completed).to match_array [@past_auction]
+      end
+    end
+
+    describe ".live" do
+      it "returns all the auctions currently running" do
+        expect(Auction.live).to match_array [@live_auction]
+      end
+    end
+
+    describe ".scheduled" do
+      it "returns all the auctions that have yet to begin" do
+        expect(Auction.scheduled).to match_array [@future_auction]
+      end
     end
   end
 end
