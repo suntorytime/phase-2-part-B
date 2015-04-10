@@ -4,6 +4,8 @@ class CreateBids < ActiveRecord::Migration
       t.float :amount, {null: false, precision: 9, scale: 2 }
       t.integer :auction_id, { null: false }
       t.integer :bidder_id, { null: false }
+
+      t.timestamps
     end
 
     add_index :bids, [:auction_id, :bidder_id], { unique: true }
