@@ -22,8 +22,8 @@ The required functionality of the site will be described in more detail in the *
 ### Provided Code
 For this part of the assessment, you are provided with a Sinatra skeleton.  The migrations have been provided for you.  Empty models have also been provided.
 
-### Estimated Times per Release
-Each of the release sections has an estimated time.  This is the approximate length of time it should take to complete the release.  Be sure to ask questions, if it's taking a lot longer to complete a release.
+### Completing the App and Estimated Times per Release
+Complete as much of this CRUD app as possible in the time allowed.  If time is running out and it looks like the app will not be completed, continue to work through the releases in order and complete as much as possible.   Each of the release sections has an estimated time.  This is the approximate length of time it should take to complete the release.  Be sure to ask questions, if it's taking a lot longer to complete a release.
 
 
 
