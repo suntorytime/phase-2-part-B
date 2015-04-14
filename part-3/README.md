@@ -1,7 +1,7 @@
 # Part 3: Build a CRUD App
 
 ## Summary
-In Part 3 of the assessment, we'll demonstrate our proficiency in building Sinatra applications: user authentication, associations, validations, controllers, views, etc. Even a little bit of CSS. 
+In Part 3 of the assessment, we'll demonstrate our proficiency in building Sinatra applications: user authentication, associations, validations, controllers, views, etc. Even a little bit of CSS.
 
 ### Site Overview
 We'll be building a simplified version of a blind auction site—in a blind auction, bidders do not see how much other bidders have bid.
@@ -162,7 +162,7 @@ Let's add some pages for viewing auctions.  We'll make a page to display a singl
 
 
 ### Release 6: CRUD Bids (30 - 45 minutes)
-Let's add the functionality to allow signed-in users to bid on items.  
+Let's add the functionality to allow signed-in users to bid on items.
 
 We'll modify the individual auction view page to support bidding.  If the user is not logged in, the view should remain as is.
 
@@ -172,7 +172,7 @@ If a user is signed in ...
 
 
 ### Release 7:  Profile Page (20 - 30 minutes)
-We'll now develop the view for the user profile page.  On the profile page, the user should see the auctions that they've listed:  completed, live, and scheduled auctions.  They should also see the items on which they've bid: completed, live, and scheduled.  Follow the [mockup](mockup-profile-page).
+We'll now develop the view for the user profile page.  On the profile page, the user should see the auctions that they've listed:  completed, live, and scheduled auctions.  They should also see the items on which they've bid: completed and live.  Follow the [mockup](mockup-profile-page.png).
 
 
 
