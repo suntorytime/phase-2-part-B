@@ -31,14 +31,14 @@ feature "writing a new post" do
   context "with javascript" do
     scenario "user navigates to post form, submits it, and sees the post", { js: true } do
       visit "/"
-        expect(page).to have_content "Share Anything"
-        expect(page).to have_content @previous_post.title
+      expect(page).to have_content "Share Anything"
+      expect(page).to have_content @previous_post.title
 
       click_link("Share Your Thoughts")
-        # Link goes away
-        expect(page).to_not have_content "Share Your Thoughts"
-        # Don't render the posts/new template
-        expect(page).to_not have_content "Write Your Post"
+      # Link goes away
+      expect(page).to_not have_content "Share Your Thoughts"
+      # Don't render the posts/new template
+      expect(page).to_not have_content "Write Your Post"
 
 
       within("#post_form") do
@@ -48,10 +48,10 @@ feature "writing a new post" do
       end
 
       find("input[name='submit']").click
-        # Submitting the form stays on the page
-        expect(page).to have_content @previous_post.title
-        # Don't render the posts/show template
-        expect(page).to_not have_content "The Post ..."
+      # Submitting the form stays on the page
+      expect(page).to have_content @previous_post.title
+      # Don't render the posts/show template
+      expect(page).to_not have_content "The Post ..."
 
       # New post is added to the DOM
       expect(page).to have_content "Bright Idea"
