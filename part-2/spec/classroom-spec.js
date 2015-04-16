@@ -6,8 +6,8 @@ describe("Classroom", function() {
     jalil = {
       firstName: "Jalil",
       scores: [100, 100],
-      averageScore: function() { return 100 },
-      letterGrade: function() { return "A" },
+      averageScore: function() { return 100; },
+      letterGrade: function() { return "A"; },
     }
 
     irene = {
@@ -49,14 +49,14 @@ describe("Classroom", function() {
 
   describe("finding a student by name", function() {
     it("returns a student with that first name", function() {
-      expect(classroom.find("Myra")).toEqual(myra)
+      expect(classroom.find("Myra")).toEqual(myra);
     });
   });
 
   describe("identifying honor roll students", function() {
     it("returns only students with average scores of 95 or greater", function() {
-      expect(classroom.honorRollStudents()).toEqual(jasmine.arrayContaining([irene, jalil]))
-      expect(classroom.honorRollStudents()).not.toEqual(jasmine.arrayContaining([kelvin, myra]))
-    })
-  })
+      expect(classroom.honorRollStudents()).toEqual(jasmine.arrayContaining([irene, jalil]));
+      expect(classroom.honorRollStudents()).not.toEqual(jasmine.arrayContaining([kelvin, myra]));
+    });
+  });
 });
