@@ -38,7 +38,9 @@ We'll need to make sure that everything is set up before we begin working on the
 ### Release 0: AJAX
 Now we'll take our application and enhance its functionality.  But, we don't want to break our functioning site in the process.  Fortunately, there are tests to help us.  Tests have been written to describe the `Post` class (see `spec/models/post_spec.rb`) and the feature of writing a new post (see `spec/features/writing_a_post_spec.rb`).
 
-The feature tests for writing a new post include two contexts:  without javascript and with javascript.  The scenario without javascript already passes. When our site is functioning properly with AJAX, the scenario with javascript will pass as well.  Both scenarios should pass.  Don't break the without-javascript test to pass the with-javascript test.
+The feature tests for writing a new post include two contexts:  without javascript and with javascript.  The code you are provided with will pass the scenario where javascript is not being used.  The with-javascript scenario fails with just the provided code.  
+
+Our task is to make the with-javascript scenario pass.  When our site is functioning properly with AJAX, both scenarios should pass.  Don't break the without-javascript test to pass the with-javascript test.
 
 To run the tests and see the with-javascript feature test fail, from the command line, run ...
 
