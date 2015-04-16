@@ -2,7 +2,7 @@ describe("Student", function(){
   var student;
 
   beforeEach(function(){
-    student = new Student("Lysette", [100, 100, 100, 4, 100])
+    student = new Student("Lysette", [100, 100, 100, 4, 100]);
   });
 
   describe("type", function() {
