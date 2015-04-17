@@ -90,7 +90,7 @@ The models and method calls are listed alphabetically; it might be easier to wri
 - `user.live_auctions` returns the auctions created by the user that are currently running.
 - `user.scheduled_auctions` returns the auctions created by the user that have yet to begin.
 
-### Release 3: Model Validations (15 - 20 minutes)
+### Release 3: Model Validations (25 - 30 minutes)
 We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  Tests have been written for the behaviors of each model.  The tests for these validations have been placed in an example group named *validations*.
 
 **Auction**
