@@ -32,10 +32,8 @@ We'll need to make sure that everything is set up before we begin working on the
 1. `$ bundle`
 1. `$ bundle exec rake db:create`
 
-## Release 0: User Model (10 - 15 minutes)
-The `User` model in this application will need to store a username and an encrypted version of the password.
-
-Create a migration to create the `users` table along with the corresponding model. Once that is complete, run the following commands:
+### Release 0: Add Model and Migration (10 - 15 minutes)
+Create both an empty `User` model and a migration to create the corresponding `users` table.  The table will need to store a username and an encrypted version of the password.  Once that is complete, run the following commands:
 
 1. `$ bundle exec rake db:migrate`
 1. `$ bundle exec rake db:migrate RACK_ENV=test`
