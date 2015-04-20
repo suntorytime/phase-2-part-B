@@ -96,9 +96,9 @@ We want to validate our models before attempting to write to the database.  Add 
 **Auction**
 - An auction's item must exist.
 - An auction's lister must exist.
-- An auction must have a start date and time.
-- An auction must have an end date and time.
-- An auction's end date and time must be later than it's start date and time.
+- An auction must have a start date.
+- An auction must have an end date.
+- An auction's end date must be later than it's start date.
 
 **Bid**
 - A bid's auction must exist.
