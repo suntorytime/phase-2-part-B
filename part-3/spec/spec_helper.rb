@@ -16,6 +16,10 @@ require 'database_cleaner'
 require 'factory_girl'
 require 'faker'
 
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
 path_to_factories = File.expand_path('../factories', __FILE__)
 Dir["#{path_to_factories}/*.rb"].each { |file| require file }
 

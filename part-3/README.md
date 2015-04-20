@@ -29,15 +29,15 @@ Complete as much of this CRUD app as possible in the time allowed.  If time is r
 ### Pre-release:  Setup (< 5 minutes)
 We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-3` directory of the phase 2 assessment.  Once there, run ...
 
-1. `$ bundle`
-1. `$ bundle exec rake db:create`
+0. `$ brew update && brew install chromedriver`
+0. `$ bundle`
+0. `$ bundle exec rake db:create`
 
 ### Release 0: Add Model and Migration (10 - 15 minutes)
 Create both an empty `User` model and a migration to create the corresponding users table. You will need to add authentication for users later, what columns will you need to support this feature? If you are not sure, take a look at the validation section and corresponding tests.
 
-1. `$ bundle exec rake db:migrate`
-1. `$ bundle exec rake db:migrate RACK_ENV=test`
-
+0. `$ bundle exec rake db:migrate`
+0. `$ bundle exec rake db:migrate RACK_ENV=test`
 
 ### Release 1: Associations (30 - 45 minutes)
 We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  In addition, tests have been written for the associations of each model.  The tests for associations have been placed in an example group named *model associations*.

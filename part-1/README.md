@@ -30,10 +30,11 @@ Feature tests are provided in Part 1 of the assessment to guide our enhancement 
 ### Pre-release:  Setup
 We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-1` directory of the phase 2 assessment.  Once there, run ...
 
-1. `$ bundle`
-2. `$ bundle exec rake db:create`
-3. `$ bundle exec rake db:migrate`
-4. `$ bundle exec rake db:migrate RACK_ENV=test`
+0. `$ brew update && brew install chromedriver`
+0. `$ bundle`
+0. `$ bundle exec rake db:create`
+0. `$ bundle exec rake db:migrate`
+0. `$ bundle exec rake db:migrate RACK_ENV=test`
 
 ### Release 0: AJAX
 Now we'll take our application and enhance its functionality.  But, we don't want to break our functioning site in the process.  Fortunately, there are tests to help us.  Tests have been written to describe the `Post` class (see `spec/models/post_spec.rb`) and the feature of writing a new post (see `spec/features/writing_a_post_spec.rb`).
