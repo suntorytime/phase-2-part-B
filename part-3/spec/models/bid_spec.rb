@@ -24,7 +24,7 @@ describe Bid do
     end
 
     it "returns the user who listed the auction in which the bid was placed" do
-      expect(@bid.lister).to eq @emilia
+      expect(@bid.receiver).to eq @emilia
     end
   end
 
