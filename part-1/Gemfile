@@ -24,4 +24,5 @@ group :test do
   gem 'selenium-webdriver', '~> 2.45.0'
   gem 'factory_girl'
   gem 'faker'
+  gem 'poltergeist'
 end
