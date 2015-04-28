@@ -14,7 +14,6 @@ require 'capybara'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'database_cleaner'
-require 'selenium-webdriver'
 require 'factory_girl'
 require 'faker'
 
