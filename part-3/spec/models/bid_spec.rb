@@ -3,12 +3,12 @@ require_relative "../spec_helper"
 describe Bid do
   describe "model associations" do
     before(:each) do
-      @erma = create(:bidder, { username: "Erma" })
-      @emilia = create(:lister, { username: "Emilia" })
-      @item = create(:item)
-      @auction = create(:auction, { lister: @emilia, item: @item })
+      @erma = FactoryGirl.create(:bidder, { username: "Erma" })
+      @emilia = FactoryGirl.create(:lister, { username: "Emilia" })
+      @item = FactoryGirl.create(:item)
+      @auction = FactoryGirl.create(:auction, { lister: @emilia, item: @item })
 
-      @bid = create(:bid, { auction: @auction, bidder: @erma })
+      @bid = FactoryGirl.create(:bid, { auction: @auction, bidder: @erma })
     end
 
     it "returns the auction in which the bid was placed" do
@@ -30,11 +30,11 @@ describe Bid do
 
   describe "additional model behaviors" do
     before(:each) do
-      @major = create(:bidder)
-      @caren = create(:bidder)
+      @major = FactoryGirl.create(:bidder)
+      @caren = FactoryGirl.create(:bidder)
 
-      @high_bid = create(:bid, { amount: 100.00, bidder: @major })
-      @low_bid = create(:bid, { amount: 1.00, bidder: @caren })
+      @high_bid = FactoryGirl.create(:bid, { amount: 100.00, bidder: @major })
+      @low_bid = FactoryGirl.create(:bid, { amount: 1.00, bidder: @caren })
     end
 
     describe ".highest" do
@@ -67,16 +67,16 @@ describe Bid do
     end
 
     it "a user can have only one bid per auction" do
-      josephina = create(:bidder)
-      auction = create(:auction)
-      original_bid = create(:bid, { bidder: josephina, auction: auction })
+      josephina = FactoryGirl.create(:bidder)
+      auction = FactoryGirl.create(:auction)
+      original_bid = FactoryGirl.create(:bid, { bidder: josephina, auction: auction })
       repeat_bid = build(:bid, { bidder: josephina, auction: auction })
       expect(repeat_bid).to_not be_valid
     end
 
-    it "A user cannot bid in an auction they created" do
-      kristie = create(:lister)
-      auction = create(:auction, { lister: kristie })
+    it "A user cannot bid in an auction they listed" do
+      kristie = FactoryGirl.create(:lister)
+      auction = FactoryGirl.create(:auction, { lister: kristie })
       bid_in_own_auction = build(:bid, { bidder: kristie, auction: auction })
       expect(bid_in_own_auction).to_not be_valid
     end
