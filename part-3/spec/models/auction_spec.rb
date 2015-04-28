@@ -93,18 +93,18 @@ describe Auction do
       end
 
       it "must have a start date and time" do
-        auction_without_starts_at = build(:auction, { starts_at: nil })
-        expect(auction_without_starts_at).to_not be_valid
+        auction_without_start_date = build(:auction, { start_date: nil })
+        expect(auction_without_start_date).to_not be_valid
       end
 
       it "must have an end date and time" do
-        auction_without_ends_at = build(:auction, { ends_at: nil })
-        expect(auction_without_ends_at).to_not be_valid
+        auction_without_end_date = build(:auction, { end_date: nil })
+        expect(auction_without_end_date).to_not be_valid
       end
 
       it "end date and time must be later than start date and time" do
-        auction_with_ends_at_before_starts_at = build(:auction, { starts_at: Time.now, ends_at: Faker::Time.backward(5) })
-        expect(auction_with_ends_at_before_starts_at).to_not be_valid
+        auction_with_end_date_before_start_date = build(:auction, { start_date: Time.now, end_date: Faker::Time.backward(5) })
+        expect(auction_with_end_date_before_start_date).to_not be_valid
       end
     end
   end
