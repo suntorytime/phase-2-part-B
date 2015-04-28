@@ -30,7 +30,7 @@ Feature tests are provided in Part 1 of the assessment to guide our enhancement 
 ### Pre-release:  Setup
 We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-1` directory of the phase 2 assessment.  Once there, run ...
 
-0. `$ brew update && brew install chromedriver`
+0. `$ brew update && brew install phantomjs`
 0. `$ bundle`
 0. `$ bundle exec rake db:create`
 0. `$ bundle exec rake db:migrate`
