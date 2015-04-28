@@ -22,24 +22,24 @@ The required functionality of the site will be described in more detail in the *
 ### Provided Code
 For this part of the assessment, you are provided with a Sinatra skeleton.  All but one of the migrations have been provided for you.  Some empty models have also been provided, but you will need to create another.
 
-### Completing the App and Estimated Times per Release
-Complete as much of this CRUD app as possible in the time allowed.  If time is running out and it looks like the app will not be completed, continue to work through the releases in order and complete as much as possible.   Each of the release sections has an estimated time.  This is the approximate length of time it should take to complete the release.  Be sure to ask questions, if it's taking a lot longer to complete a release.
+### Completing the App
+Complete as much of this CRUD app as possible in the time allowed.  If time is running out and it looks like the app will not be completed, continue to work through the releases in order and complete as much as possible. Be sure to ask questions, if you find yourself stuck.
 
 ## Releases
-### Pre-release:  Setup (< 5 minutes)
+### Pre-release:  Setup
 We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-3` directory of the phase 2 assessment.  Once there, run ...
 
 0. `$ brew update && brew install chromedriver`
 0. `$ bundle`
 0. `$ bundle exec rake db:create`
 
-### Release 0: Add Model and Migration (10 - 15 minutes)
+### Release 0: Add Model and Migration
 Create both an empty `User` model and a migration to create the corresponding users table. You will need to add authentication for users later, what columns will you need to support this feature? If you are not sure, take a look at the validation section and corresponding tests.
 
 0. `$ bundle exec rake db:migrate`
 0. `$ bundle exec rake db:migrate RACK_ENV=test`
 
-### Release 1: Associations (30 - 45 minutes)
+### Release 1: Associations
 We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  In addition, tests have been written for the associations of each model.  The tests for associations have been placed in an example group named *model associations*.
 
 The models and method calls are listed alphabetically; you might need to write them in a different order.
@@ -67,7 +67,7 @@ The models and method calls are listed alphabetically; you might need to write t
 - `user.bid_on_items` returns the items on which the user has bid.
 - `user.listed_items` returns the items the user has listed.
 
-### Release 2: Additional Model Behaviors (20 - 30 minutes)
+### Release 2: Additional Model Behaviors
 Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `auction`).  Tests have been written for the behaviors of each model.  The tests for these behaviors have been placed in an example group named *additional model behaviors*.
 
 The models and method calls are listed alphabetically; it might be easier to write them in a different order.
@@ -90,7 +90,7 @@ The models and method calls are listed alphabetically; it might be easier to wri
 - `user.live_auctions` returns the auctions created by the user that are currently running.
 - `user.scheduled_auctions` returns the auctions created by the user that have yet to begin.
 
-### Release 3: Model Validations (25 - 30 minutes)
+### Release 3: Model Validations
 We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  Tests have been written for the behaviors of each model.  The tests for these validations have been placed in an example group named *validations*.
 
 **Auction**
@@ -119,7 +119,7 @@ We want to validate our models before attempting to write to the database.  Add 
 - A user must choose a password that is at least eight characters long when creating an account.
 
 
-### Release 4: User Authentication (20 - 30 minutes)
+### Release 4: User Authentication
 We'll begin building the interface for our application by creating views around user sign up, sign in, and sign out.
 
 **Sign up**
@@ -135,7 +135,7 @@ We'll begin building the interface for our application by creating views around 
 **Sign out**
 - After signing in, users can sign out.
 
-### Release 5: CRUD Auctions and Items (45 - 60 minutes)
+### Release 5: CRUD Auctions and Items
 Now we'll add some CRUD functionality around auctions and their items.  Users create auctions to sell items.  There's no reason to create an item without an auction.  But, remember the validation that an auction's item must exist.
 
 **Auctions**
@@ -147,7 +147,7 @@ Now we'll add some CRUD functionality around auctions and their items.  Users cr
 - Users can create items.
 - Users can edit items.
 
-### Release 6:  Auction Pages and Layout (30 -45 minutes)
+### Release 6:  Auction Pages and Layout
 Let's add some pages for viewing auctions.  We'll make a page to display a single auction and a page where all the auctions are listed.  While we're at it, let's do some work on the general layout of our site.
 
 **Individual Auctions and Layout**
@@ -158,7 +158,7 @@ Let's add some pages for viewing auctions.  We'll make a page to display a singl
 - Create a page showing a list of all live auctions.
 
 
-### Release 7: CRUD Bids (30 - 45 minutes)
+### Release 7: CRUD Bids
 Let's add the functionality to allow signed-in users to bid on items.
 
 We'll modify the individual auction view page to support bidding.  If the user is not logged in, the view should remain as is.
@@ -167,7 +167,7 @@ If a user is signed in ...
   - If the user has not already bid in the auction, display a form for creating a new bid (see [mockup](mockup-auction-with-new-bid-form.png)).
   - If the user has already bid in the auction, display the value of the bid, a form for editing the bid, and a form for deleting the bid (see [mockup](mockup-auction-with-edit-and-delete-forms.png)).
 
-### Release 8:  Profile Page (20 - 30 minutes)
+### Release 8:  Profile Page
 We'll now develop the view for the user profile page.  On the profile page, the user should see the auctions that they've listed:  completed, live, and scheduled auctions.  They should also see the items on which they've bid: completed and live.  Follow the [mockup](mockup-profile-page.png).
 
 ## Conclusion
