@@ -12,7 +12,7 @@ We won't run the tests from the command line.  Instead we'll run them in the bro
 
 ## Releases
 ### Release 0: Student
-We'll start by focusing on the tests describing our student (see `spec/student.js`).  To run the tests, open the file `SpecRunner.html` in a browser. On the command line navigate to the `part-2` directory and then run ...
+We'll start by focusing on the tests describing our student (see `spec/student_spec.js`).  To run the tests, open the file `SpecRunner.html` in a browser. On the command line navigate to the `part-2` directory and then run ...
 
 ```
 $ open SpecRunner.html
