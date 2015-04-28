@@ -3,14 +3,14 @@ require_relative "../spec_helper"
 describe Auction do
   describe "model associations" do
     before(:each) do
-      @tom = create(:user, { username: "tom" })
-      @jodie = create(:user, { username: "jodie" })
+      @tom = FactoryGirl.create(:user, { username: "tom" })
+      @jodie = FactoryGirl.create(:user, { username: "jodie" })
 
-      @lamp = create(:item, { title: "lamp" })
+      @lamp = FactoryGirl.create(:item, { title: "lamp" })
 
-      @auction = create(:auction, { lister: @tom, item: @lamp })
+      @auction = FactoryGirl.create(:auction, { lister: @tom, item: @lamp })
 
-      @bid = create(:bid, { bidder: @jodie, auction: @auction })
+      @bid = FactoryGirl.create(:bid, { bidder: @jodie, auction: @auction })
     end
 
     it "returns the listed item" do
@@ -33,9 +33,9 @@ describe Auction do
   describe "additional model behaviors" do
     describe "class behaviors" do
       before(:each) do
-        @past_auction = create(:past_auction)
-        @live_auction = create(:live_auction)
-        @future_auction = create(:future_auction)
+        @past_auction = FactoryGirl.create(:past_auction)
+        @live_auction = FactoryGirl.create(:live_auction)
+        @future_auction = FactoryGirl.create(:future_auction)
       end
 
       describe ".completed" do
@@ -59,13 +59,13 @@ describe Auction do
 
     describe "instance behaviors" do
       before(:each) do
-        @juan = create(:user)
-        @sally = create(:user)
+        @juan = FactoryGirl.create(:user)
+        @sally = FactoryGirl.create(:user)
 
-        @auction = create(:auction)
+        @auction = FactoryGirl.create(:auction)
 
-        @high_bid = create(:bid, { amount: 50.00, auction: @auction, bidder: @juan })
-        @low_bid = create(:bid, { amount: 10.00, auction: @auction, bidder: @sally })
+        @high_bid = FactoryGirl.create(:bid, { amount: 50.00, auction: @auction, bidder: @juan })
+        @low_bid = FactoryGirl.create(:bid, { amount: 10.00, auction: @auction, bidder: @sally })
       end
 
       describe "#highest_bid" do
