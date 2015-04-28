@@ -24,7 +24,7 @@ In Part 1 we'll take a functioning Sinatra application and enhance the user expe
 8. The "Share Your Thoughts" link is again visible.
 
 ### Testing
-Feature tests are provided in Part 1 of the assessment to guide our enhancement efforts. These types of tests might be unfamiliar.  For example, we'll see a web-browser pop up when running them.  We don't need to understand how to set up or run such tests.  We'll just use them as a guide.
+Feature tests are provided in Part 1 of the assessment to guide our enhancement efforts. These types of tests might be unfamiliar.  We don't need to understand how to set up or write such tests.  We'll just use them as a guide.
 
 ## Releases
 ### Pre-release:  Setup
