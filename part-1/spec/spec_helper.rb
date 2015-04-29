@@ -12,14 +12,12 @@ require 'shoulda-matchers'
 require 'rack/test'
 require 'capybara'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'database_cleaner'
-require 'selenium-webdriver'
 require 'factory_girl'
 require 'faker'
 
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
+Capybara.javascript_driver = :poltergeist
 
 path_to_factories = File.expand_path('../factories', __FILE__)
 Dir["#{path_to_factories}/*.rb"].each { |file| require file }

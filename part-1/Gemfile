@@ -21,7 +21,7 @@ group :test do
   gem 'rspec', '~>3.0'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'selenium-webdriver', '~> 2.45.0'
   gem 'factory_girl'
   gem 'faker'
+  gem 'poltergeist'
 end
