@@ -73,9 +73,9 @@ Once the associations have been written, let's add some additional behaviors to 
 The models and method calls are listed alphabetically; it might be easier to write them in a different order.
 
 **Auction Class**
-- `Auction.completed` returns all the auctions that have ended.
-- `Auction.live` returns all the auctions currently running.
-- `Auction.scheduled` returns all the auctions that have yet to begin.
+- `Auction.completed` returns all the auctions with end dates earlier than today's date.
+- `Auction.live` returns all the auctions with start dates earlier than or equal to today's date and end dates later than or equal to today's date.
+- `Auction.scheduled` returns all the auctions with start dates after today's date.
 
 **Auction Instances**
 - `auction.highest_bid` returns the bid with the highest amount for the auction.
