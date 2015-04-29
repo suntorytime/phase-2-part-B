@@ -3,9 +3,9 @@ require_relative "../spec_helper"
 describe Item do
   describe "model associations" do
     before(:each) do
-      @guy = create(:lister)
-      @item = create(:item)
-      @auction = create(:auction, { lister: @guy, item: @item })
+      @guy = FactoryGirl.create(:lister)
+      @item = FactoryGirl.create(:item)
+      @auction = FactoryGirl.create(:auction, { lister: @guy, item: @item })
     end
 
     it "returns the auction in which it's listed" do

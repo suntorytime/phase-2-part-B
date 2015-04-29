@@ -3,18 +3,18 @@ require_relative "../spec_helper"
 describe User do
   describe "model associations" do
     before(:each) do
-      @algernon = create(:user)
-      @algernons_item = create(:item)
-      @algernons_auction = create(:auction, { lister: @algernon, item: @algernons_item })
+      @algernon = FactoryGirl.create(:user)
+      @algernons_item = FactoryGirl.create(:item)
+      @algernons_auction = FactoryGirl.create(:auction, { lister: @algernon, item: @algernons_item })
 
-      @milton = create(:lister)
-      @miltons_item = create(:item)
-      @miltons_auction = create(:auction, { lister: @milton, item: @miltons_item })
+      @milton = FactoryGirl.create(:lister)
+      @miltons_item = FactoryGirl.create(:item)
+      @miltons_auction = FactoryGirl.create(:auction, { lister: @milton, item: @miltons_item })
 
-      @algernons_bid = create(:bid, { bidder: @algernon, auction: @miltons_auction })
+      @algernons_bid = FactoryGirl.create(:bid, { bidder: @algernon, auction: @miltons_auction })
     end
 
-    it "returns the auctions created by the user" do
+    it "returns the auctions listed by the user" do
       expect(@algernon.auctions).to match_array [@algernons_auction]
     end
 
@@ -33,26 +33,26 @@ describe User do
 
   describe "additional model behaviors" do
     before(:each) do
-      @tessie = create(:user)
-      @past_auction = create(:past_auction, { lister: @tessie })
-      @live_auction = create(:live_auction, { lister: @tessie })
-      @future_auction = create(:future_auction, { lister: @tessie })
+      @tessie = FactoryGirl.create(:user)
+      @past_auction = FactoryGirl.create(:past_auction, { lister: @tessie })
+      @live_auction = FactoryGirl.create(:live_auction, { lister: @tessie })
+      @future_auction = FactoryGirl.create(:future_auction, { lister: @tessie })
     end
 
     describe "#completed_auctions" do
-      it "returns the auctions created by the user that have ended" do
+      it "returns the auctions listed by the user that have ended" do
         expect(@tessie.completed_auctions).to match_array [@past_auction]
       end
     end
 
     describe "#live_auctions" do
-      it "returns the auctions created by the user that are currently running" do
+      it "returns the auctions listed by the user that are currently running" do
         expect(@tessie.live_auctions).to match_array [@live_auction]
       end
     end
 
     describe "#scheduled_auctions" do
-      it "returns the auctions created by the user that have yet to begin" do
+      it "returns the auctions listed by the user that have yet to begin" do
         expect(@tessie.scheduled_auctions).to match_array [@future_auction]
       end
     end
@@ -65,7 +65,7 @@ describe User do
     end
 
     it "must have a unique username" do
-      davey = create(:user, { username: "Davey" })
+      davey = FactoryGirl.create(:user, { username: "Davey" })
       second_davey = build(:user, { username: "Davey" })
       expect(second_davey).to_not be_valid
     end
