@@ -56,56 +56,32 @@ describe Auction do
         end
       end
     end
+  end
 
-    describe "instance behaviors" do
-      before(:each) do
-        @juan = FactoryGirl.create(:user)
-        @sally = FactoryGirl.create(:user)
-
-        @auction = FactoryGirl.create(:auction)
-
-        @high_bid = FactoryGirl.create(:bid, { amount: 50.00, auction: @auction, bidder: @juan })
-        @low_bid = FactoryGirl.create(:bid, { amount: 10.00, auction: @auction, bidder: @sally })
-      end
-
-      describe "#highest_bid" do
-        it "returns the highest bid for the auction" do
-          expect(@auction.highest_bid).to eq @high_bid
-        end
-      end
-
-      describe "#highest_bidder" do
-        it "returns the user who placed the highest bid for the auction" do
-          expect(@auction.highest_bidder).to eq @juan
-        end
-      end
+  describe "validations" do
+    it "item must exist" do
+      auction_without_an_item = build(:auction, { item: nil })
+      expect(auction_without_an_item).to_not be_valid
     end
 
-    describe "validations" do
-      it "item must exist" do
-        auction_without_an_item = build(:auction, { item: nil })
-        expect(auction_without_an_item).to_not be_valid
-      end
+    it "lister must exist" do
+      auction_without_a_lister = build(:auction, { lister: nil })
+      expect(auction_without_a_lister).to_not be_valid
+    end
 
-      it "lister must exist" do
-        auction_without_a_lister = build(:auction, { lister: nil })
-        expect(auction_without_a_lister).to_not be_valid
-      end
+    it "must have a start date and time" do
+      auction_without_start_date = build(:auction, { start_date: nil })
+      expect(auction_without_start_date).to_not be_valid
+    end
 
-      it "must have a start date and time" do
-        auction_without_start_date = build(:auction, { start_date: nil })
-        expect(auction_without_start_date).to_not be_valid
-      end
+    it "must have an end date and time" do
+      auction_without_end_date = build(:auction, { end_date: nil })
+      expect(auction_without_end_date).to_not be_valid
+    end
 
-      it "must have an end date and time" do
-        auction_without_end_date = build(:auction, { end_date: nil })
-        expect(auction_without_end_date).to_not be_valid
-      end
-
-      it "end date and time must be later than start date and time" do
-        auction_with_end_date_before_start_date = build(:auction, { start_date: Time.now, end_date: Faker::Time.backward(5) })
-        expect(auction_with_end_date_before_start_date).to_not be_valid
-      end
+    it "end date and time must be later than start date and time" do
+      auction_with_end_date_before_start_date = build(:auction, { start_date: Time.now, end_date: Faker::Time.backward(5) })
+      expect(auction_with_end_date_before_start_date).to_not be_valid
     end
   end
 end

@@ -61,27 +61,17 @@ We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Crea
 - `user.bid_in_auctions` returns the auctions for which the user has placed a bid
 
 ### Release 2: Additional Model Behaviors
-Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `auction`).  Tests have been written for the behaviors of each model.  The tests for these behaviors have been placed in an example group named *additional model behaviors*.
-
-The models and method calls are listed alphabetically; it might be easier to write them in a different order.
+Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `user`). 
 
 **Auction Class**
 - `Auction.completed` returns all the auctions with end dates earlier than today's date.
 - `Auction.live` returns all the auctions with start dates earlier than or equal to today's date and end dates later than or equal to today's date.
 - `Auction.scheduled` returns all the auctions with start dates after today's date.
 
-**Auction Instances**
-- `auction.highest_bid` returns the bid with the highest amount for the auction.
-- `auction.highest_bidder` returns the user who placed the highest bid for the auction.
-
-**Bid Class**
-- `Bid.highest` returns the bid with the highest amount.
-- `Bid.highest_bidder` returns the user who placed the highest bid.
-
 **User Instances**
-- `user.completed_auctions` returns the auctions created by the user that have ended.
-- `user.live_auctions` returns the auctions created by the user that are currently running.
-- `user.scheduled_auctions` returns the auctions created by the user that have yet to begin.
+- `user.completed_listed_auctions` returns the auctions created by the user that have ended.
+- `user.live_listed_auctions` returns the auctions created by the user that are currently running.
+- `user.scheduled_listed_auctions` returns the auctions created by the user that have yet to begin.
 
 ### Release 3: Model Validations
 We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  Tests have been written for the behaviors of each model.  The tests for these validations have been placed in an example group named *validations*.

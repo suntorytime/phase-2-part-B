@@ -20,28 +20,6 @@ describe Bid do
     end
   end
 
-  describe "additional model behaviors" do
-    before(:each) do
-      @major = FactoryGirl.create(:bidder)
-      @caren = FactoryGirl.create(:bidder)
-
-      @high_bid = FactoryGirl.create(:bid, { amount: 100.00, bidder: @major })
-      @low_bid = FactoryGirl.create(:bid, { amount: 1.00, bidder: @caren })
-    end
-
-    describe ".highest" do
-      it "returns the bid with the highest amount" do
-        expect(Bid.highest).to eq @high_bid
-      end
-    end
-
-    describe ".highest_bidder" do
-      it "returns the user who placed the highest bid" do
-        expect(Bid.highest_bidder).to eq @major
-      end
-    end
-  end
-
   describe "validations" do
     it "auction must exist" do
       bid_with_no_auction = build(:bid, { auction: nil })

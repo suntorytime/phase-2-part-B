@@ -31,19 +31,19 @@ describe User do
       @future_auction = FactoryGirl.create(:future_auction, { lister: @tessie })
     end
 
-    describe "#completed_auctions" do
+    describe "#completed_listed_auctions" do
       it "returns the auctions listed by the user that have ended" do
         expect(@tessie.completed_auctions).to match_array [@past_auction]
       end
     end
 
-    describe "#live_auctions" do
+    describe "#live_listed_auctions" do
       it "returns the auctions listed by the user that are currently running" do
         expect(@tessie.live_auctions).to match_array [@live_auction]
       end
     end
 
-    describe "#scheduled_auctions" do
+    describe "#scheduled_listed_auctions" do
       it "returns the auctions listed by the user that have yet to begin" do
         expect(@tessie.scheduled_auctions).to match_array [@future_auction]
       end
