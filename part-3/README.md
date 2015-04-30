@@ -40,7 +40,7 @@ Create both an empty `User` model and a migration to create the corresponding us
 0. `$ bundle exec rake db:migrate RACK_ENV=test`
 
 ### Release 1: Associations
-We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.
+We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  It might be beneficial to create a visual representation of the database schema, based on the migrations.
 
 **Bid**
 - `bid.auction` returns the auction in which the bid was placed.
