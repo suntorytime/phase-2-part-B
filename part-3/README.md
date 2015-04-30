@@ -92,7 +92,7 @@ Once the associations have been written, let's add some additional behaviors to 
 - `user.scheduled_listed_auctions` returns the auctions created by the user that have yet to begin.
 
 ### Release 4: Model Validations
-We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.
+We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  
 
 **Auction**
 - An auction's item must exist.
@@ -113,16 +113,12 @@ We want to validate our models before attempting to write to the database.  Add 
 - A user must have a unique username.
 
 ### Release 5: CRUD Auctions and Items
-Now we'll add some CRUD functionality around auctions and their items.  Users create auctions to sell items.  There's no reason to create an item without an auction.  But, remember the validation that an auction's item must exist.
+Now we'll add some CRUD functionality around auctions.  Users create auctions to sell items.  There's no reason to create an item without an auction, and remember the validation that an auction's item must exist.
 
 **Auctions**
 - Users can create auctions.
-- Users can edit auctions.
-- Users can delete auctions.
-
-**Items**
-- Users can create items.
-- Users can edit items.
+- Users can edit their own auctions.
+- Users can delete their own auctions.
 
 ### Release 6:  Auction Pages and Layout
 Let's add some pages for viewing auctions.  We'll make a page to display a single auction and a page where all the auctions are listed.  While we're at it, let's do some work on the general layout of our site.
