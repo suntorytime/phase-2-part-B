@@ -4,7 +4,6 @@ class CreateAuctions < ActiveRecord::Migration
       t.date    :start_date, { null: false }
       t.date    :end_date, { null: false }
       t.integer :lister_id, { null: false, index: true }
-      t.integer :item_id, { null: false, index: true }
 
       t.timestamps
     end

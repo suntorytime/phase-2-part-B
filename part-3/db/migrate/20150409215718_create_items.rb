@@ -4,8 +4,11 @@ class CreateItems < ActiveRecord::Migration
       t.string :title, { null: false }
       t.text :description, { null: false }
       t.string :condition, { null: false }
+      t.integer :auction_id, { null: false }
 
       t.timestamps
     end
+
+    add_index :items, :auction_id, { unique: true }
   end
 end
