@@ -3,5 +3,7 @@ FactoryGirl.define do
     title { Faker::Commerce.product_name }
     description { Faker::Lorem.paragraph }
     condition "good"
+
+    association :auction
   end
 end
