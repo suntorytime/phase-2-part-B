@@ -2,31 +2,32 @@ require_relative "../spec_helper"
 
 describe Auction do
   describe "model associations" do
-    before(:each) do
-      @tom = FactoryGirl.create(:user, { username: "tom" })
-      @jodie = FactoryGirl.create(:user, { username: "jodie" })
-
-      @lamp = FactoryGirl.create(:item, { title: "lamp" })
-
-      @auction = FactoryGirl.create(:auction, { lister: @tom, item: @lamp })
-
-      @bid = FactoryGirl.create(:bid, { bidder: @jodie, auction: @auction })
-    end
-
     it "returns the listed item" do
-      expect(@auction.item).to eq @lamp
+      lamp = FactoryGirl.build(:item)
+      auction = FactoryGirl.build(:auction, { item: lamp })
+
+      expect(auction.item).to eq lamp
     end
 
     it "returns the user who listed the auction" do
-      expect(@auction.lister).to eq @tom
+      tom = FactoryGirl.build(:lister)
+      auction = FactoryGirl.build(:auction, { lister: tom })
+
+      expect(auction.lister).to eq tom
     end
 
     it "returns the bids placed" do
-      expect(@auction.bids).to match_array [@bid]
+      bids = [FactoryGirl.build(:bid), FactoryGirl.build(:bid)]
+      auction = FactoryGirl.build(:auction, { bids: bids })
+
+      expect(auction.bids).to match_array bids
     end
 
     it "returns the users who've bid" do
-      expect(@auction.bidders).to match_array [@jodie]
+      jodie = FactoryGirl.build(:bidder)
+      auction = FactoryGirl.build(:auction, { bidders: [jodie] })
+
+      expect(auction.bidders).to match_array [jodie]
     end
   end
 

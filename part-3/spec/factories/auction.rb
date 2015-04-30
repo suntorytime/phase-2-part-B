@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory(:auction) do
-    association :item
-    association :lister
     start_date { Time.now - 1.day }
     end_date { Time.now + 2.days }
 
