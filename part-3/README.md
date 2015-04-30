@@ -10,13 +10,13 @@ The required functionality of the site will be described in more detail in the *
 
 **Unregistered Users**
 - Register a new account.
-- Browse available items.
+- Browse auctions.
 
 **Registered Users**
-- Sign in and out
-- List items.
-- Browse available items.
-- Bid on available items that other users have listed.
+- Sign in and out.
+- List new auctions.
+- Browse auctions.
+- Place bids in auctions.
 - Have a profile showing their listing and bidding activity.
 
 ### Provided Code
