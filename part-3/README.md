@@ -40,9 +40,7 @@ Create both an empty `User` model and a migration to create the corresponding us
 0. `$ bundle exec rake db:migrate RACK_ENV=test`
 
 ### Release 1: Associations
-We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  In addition, tests have been written for the associations of each model.  The tests for associations have been placed in an example group named *model associations*.
-
-The models and method calls are listed alphabetically; you might need to write them in a different order.
+We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.
 
 **Auction**
 - `auction.bidders` returns the users who have bid in the auction.
