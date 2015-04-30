@@ -18,14 +18,6 @@ describe Bid do
     it "returns the user who placed the bid" do
       expect(@bid.bidder).to eq @erma
     end
-
-    it "returns the item in the auction in which the bid was placed" do
-      expect(@bid.item).to eq @item
-    end
-
-    it "returns the user who listed the auction in which the bid was placed" do
-      expect(@bid.receiver).to eq @emilia
-    end
   end
 
   describe "additional model behaviors" do

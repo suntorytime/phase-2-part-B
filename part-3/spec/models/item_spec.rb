@@ -11,10 +11,6 @@ describe Item do
     it "returns the auction in which it's listed" do
       expect(@item.auction).to eq @auction
     end
-
-    it "returns the user who listed the auction in which it's lister" do
-      expect(@item.lister).to eq @guy
-    end
   end
 
   describe "validations" do

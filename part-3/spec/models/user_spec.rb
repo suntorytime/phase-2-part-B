@@ -15,19 +15,11 @@ describe User do
     end
 
     it "returns the auctions listed by the user" do
-      expect(@algernon.auctions).to match_array [@algernons_auction]
+      expect(@algernon.listed_auctions).to match_array [@algernons_auction]
     end
 
     it "returns the bids that the user has made" do
       expect(@algernon.bids).to match_array [@algernons_bid]
-    end
-
-    it "returns the items listed in auctions in which the user has placed a bid" do
-      expect(@algernon.bid_on_items).to match_array [@miltons_item]
-    end
-
-    it "returns the items in auctions listed by the user" do
-      expect(@algernon.listed_items).to match_array [@algernons_item]
     end
   end
 
