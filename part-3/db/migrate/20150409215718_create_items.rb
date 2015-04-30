@@ -3,7 +3,6 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string :title, { null: false }
       t.text :description, { null: false }
-      t.string :condition, { null: false }
       t.integer :auction_id, { null: false }
 
       t.timestamps

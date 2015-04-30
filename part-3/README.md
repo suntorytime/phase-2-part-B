@@ -74,14 +74,14 @@ Once the associations have been written, let's add some additional behaviors to 
 - `user.scheduled_listed_auctions` returns the auctions created by the user that have yet to begin.
 
 ### Release 3: Model Validations
-We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  Tests have been written for the behaviors of each model.  The tests for these validations have been placed in an example group named *validations*.
+We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.
 
 **Auction**
 - An auction's item must exist.
 - An auction's lister must exist.
 - An auction must have a start date.
 - An auction must have an end date.
-- An auction's end date must be later than it's start date.
+- An auction's end date must be later than its start date.
 
 **Bid**
 - A bid's auction must exist.
@@ -90,16 +90,9 @@ We want to validate our models before attempting to write to the database.  Add 
 - A user can have only one bid per auction.
 - A user cannot bid in an auction they created.
 
-**Item**
-- An item must have a title.
-- An item must have a description.
-- An item must have a condition.
-- An item's condition must be *new*, *like new*, *good*, or *poor*.
-
 **User**
 - A user must have a username.
 - A user must have a unique username.
-- A user must choose a password that is at least eight characters long when creating an account.
 
 
 ### Release 4: User Authentication
