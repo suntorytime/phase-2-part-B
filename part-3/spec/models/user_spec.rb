@@ -2,24 +2,27 @@ require_relative "../spec_helper"
 
 describe User do
   describe "model associations" do
-    before(:each) do
-      @algernon = FactoryGirl.create(:user)
-      @algernons_item = FactoryGirl.create(:item)
-      @algernons_auction = FactoryGirl.create(:auction, { lister: @algernon, item: @algernons_item })
-
-      @milton = FactoryGirl.create(:lister)
-      @miltons_item = FactoryGirl.create(:item)
-      @miltons_auction = FactoryGirl.create(:auction, { lister: @milton, item: @miltons_item })
-
-      @algernons_bid = FactoryGirl.create(:bid, { bidder: @algernon, auction: @miltons_auction })
-    end
-
     it "returns the auctions listed by the user" do
-      expect(@algernon.listed_auctions).to match_array [@algernons_auction]
+      algernons_auction = FactoryGirl.build(:auction)
+      algernon = FactoryGirl.create(:lister, { listed_auctions: [algernons_auction] })
+
+      expect(algernon.listed_auctions).to match_array [algernons_auction]
     end
 
     it "returns the bids that the user has made" do
-      expect(@algernon.bids).to match_array [@algernons_bid]
+      milton = FactoryGirl.build(:lister)
+      miltons_auction = FactoryGirl.build(:auction, { lister: milton })
+      algernons_bid = FactoryGirl.build(:bid, { auction: miltons_auction })
+      algernon = FactoryGirl.create(:bidder, { bids: [algernons_bid] })
+
+      expect(algernon.bids).to match_array [algernons_bid]
+    end
+
+    it "returns the auctions for which the user has placed a bid" do
+      miltons_auction = FactoryGirl.build(:auction)
+      algernon = FactoryGirl.build(:bidder, { bid_in_auctions: [miltons_auction] })
+
+      expect(algernon.bid_in_auctions).to match_array [miltons_auction]
     end
   end
 
