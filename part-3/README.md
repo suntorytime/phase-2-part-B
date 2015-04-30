@@ -33,11 +33,14 @@ We'll need to make sure that everything is set up before we begin working on the
 0. `$ bundle`
 0. `$ bundle exec rake db:create`
 
-### Release 0: Add Model and Migration
-Create both an empty `User` model and a migration to create the corresponding users table. You will need to add authentication for users later, what columns will you need to support this feature? If you are not sure, take a look at the validation section and corresponding tests.
+### Release 0: Add User Model and Migration
+Create both an empty `User` model and a migration to create the corresponding `users` table.  Our `users` table will only need to store data related to authentication: a username and password.
+
+After the model and migration have been written, run the migrations by running the following commands.
 
 0. `$ bundle exec rake db:migrate`
 0. `$ bundle exec rake db:migrate RACK_ENV=test`
+
 
 ### Release 1: User Authentication
 We'll begin building the interface for our application by creating views around user sign up, sign in, and sign out.
