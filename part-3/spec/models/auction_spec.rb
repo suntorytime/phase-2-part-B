@@ -60,29 +60,43 @@ describe Auction do
   end
 
   describe "validations" do
+    it "can be valid" do
+      valid_auction = FactoryGirl.build(:auction_with_lister_and_item)
+      expect(valid_auction).to be_valid
+    end
+
     it "item must exist" do
-      auction_without_an_item = build(:auction, { item: nil })
-      expect(auction_without_an_item).to_not be_valid
+      auction = build(:auction_without_item)
+      expect(auction).to_not be_valid
     end
 
     it "lister must exist" do
-      auction_without_a_lister = build(:auction, { lister: nil })
-      expect(auction_without_a_lister).to_not be_valid
+      auction = build(:auction_without_lister)
+      expect(auction).to_not be_valid
     end
 
-    it "must have a start date and time" do
-      auction_without_start_date = build(:auction, { start_date: nil })
-      expect(auction_without_start_date).to_not be_valid
+    it "must have a start date" do
+      auction = build(:auction_with_lister_and_item)
+      expect(auction).to be_valid
+
+      auction.start_date = nil
+      expect(auction).to_not be_valid
     end
 
-    it "must have an end date and time" do
-      auction_without_end_date = build(:auction, { end_date: nil })
-      expect(auction_without_end_date).to_not be_valid
+    it "must have an end date" do
+      auction = build(:auction_with_lister_and_item)
+      expect(auction).to be_valid
+
+      auction.end_date = nil
+      expect(auction).to_not be_valid
     end
 
     it "end date and time must be later than start date and time" do
-      auction_with_end_date_before_start_date = build(:auction, { start_date: Time.now, end_date: Faker::Time.backward(5) })
-      expect(auction_with_end_date_before_start_date).to_not be_valid
+      auction = build(:auction_with_lister_and_item)
+      expect(auction).to be_valid
+
+      auction.end_date = auction.start_date - 5.days
+      expect(auction).to_not be_valid
     end
   end
 end
