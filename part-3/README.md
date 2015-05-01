@@ -106,10 +106,20 @@ Once the associations have been written, let's add some additional behaviors to 
 - `Auction.live` returns all the auctions with start dates earlier than or equal to today's date and end dates later than or equal to today's date.
 - `Auction.scheduled` returns all the auctions with start dates after today's date.
 
+To tests these behaviors, run:
+```
+rspec --tag auction_behaviors
+```
+
 **User Instances**
 - `user.completed_listed_auctions` returns the auctions created by the user that have ended.
 - `user.live_listed_auctions` returns the auctions created by the user that are currently running.
 - `user.scheduled_listed_auctions` returns the auctions created by the user that have yet to begin.
+
+To tests these behaviors, run:
+```
+rspec --tag user_behaviors
+```
 
 ### Release 4: Model Validations
 We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  
@@ -121,6 +131,11 @@ We want to validate our models before attempting to write to the database.  Add 
 - An auction must have an end date.
 - An auction's end date must be later than its start date.
 
+To tests these validations, run:
+```
+rspec --tag auction_validations
+```
+
 **Bid**
 - A bid's auction must exist.
 - A bid's bidder must exist.
@@ -128,9 +143,19 @@ We want to validate our models before attempting to write to the database.  Add 
 - A user can have only one bid per auction.
 - A user cannot bid in an auction they created.
 
+To tests these validations, run:
+```
+rspec --tag bid_validations
+```
+
 **User**
 - A user must have a username.
 - A user must have a unique username.
+
+To tests these validations, run:
+```
+rspec --tag user_validations
+```
 
 ### Release 5: CRUD Auctions and Items
 Now we'll add some CRUD functionality around auctions.  Users create auctions to sell items.  There's no reason to create an item without an auction, and remember the validation that an auction's item must exist.

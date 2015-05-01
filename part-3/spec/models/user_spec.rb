@@ -24,7 +24,7 @@ describe User do
     end
   end
 
-  describe "additional model behaviors" do
+  describe "additional model behaviors", { user_behaviors: true } do
     before(:each) do
       @tessie = FactoryGirl.create(:user)
       @past_auction = FactoryGirl.create(:past_auction, { lister: @tessie })
@@ -51,7 +51,7 @@ describe User do
     end
   end
 
-  describe "validations" do
+  describe "validations", { user_validations: true } do
     it "must have a username" do
       godfrey = FactoryGirl.build(:user)
       expect(godfrey).to be_valid

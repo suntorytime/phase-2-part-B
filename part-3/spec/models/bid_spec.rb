@@ -17,7 +17,7 @@ describe Bid do
     end
   end
 
-  describe "validations" do
+  describe "validations", { bid_validations: true } do
     it "can be valid" do
       bid = FactoryGirl.build(:bid_with_bidder_and_auction)
       expect(bid).to be_valid

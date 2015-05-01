@@ -31,7 +31,7 @@ describe Auction do
     end
   end
 
-  describe "additional model behaviors" do
+  describe "additional model behaviors", { auction_behaviors: true } do
     describe "class behaviors" do
       before(:each) do
         @past_auction = FactoryGirl.create(:past_auction)
@@ -59,7 +59,7 @@ describe Auction do
     end
   end
 
-  describe "validations" do
+  describe "validations", { auction_validations: true } do
     it "can be valid" do
       valid_auction = FactoryGirl.build(:auction_with_lister_and_item)
       expect(valid_auction).to be_valid
