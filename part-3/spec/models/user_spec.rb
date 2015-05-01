@@ -3,17 +3,15 @@ require_relative "../spec_helper"
 describe User do
   describe "model associations" do
     it "returns the auctions listed by the user" do
-      algernons_auction = FactoryGirl.build(:auction)
-      algernon = FactoryGirl.create(:lister, { listed_auctions: [algernons_auction] })
+      algernon = FactoryGirl.build(:lister)
+      algernons_auction = FactoryGirl.create(:auction_with_lister_and_item, { lister: algernon })
 
       expect(algernon.listed_auctions).to match_array [algernons_auction]
     end
 
     it "returns the bids that the user has made" do
-      milton = FactoryGirl.build(:lister)
-      miltons_auction = FactoryGirl.build(:auction, { lister: milton })
-      algernons_bid = FactoryGirl.build(:bid, { auction: miltons_auction })
-      algernon = FactoryGirl.create(:bidder, { bids: [algernons_bid] })
+      algernon = FactoryGirl.build(:bidder)
+      algernons_bid = FactoryGirl.create(:bid_with_bidder_and_auction, { bidder: algernon })
 
       expect(algernon.bids).to match_array [algernons_bid]
     end
