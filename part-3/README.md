@@ -40,24 +40,7 @@ After the model and migration have been written, run the migrations by running t
 0. `$ bundle exec rake db:migrate`
 0. `$ bundle exec rake db:migrate RACK_ENV=test`
 
-
-### Release 1: User Authentication
-We'll begin building the interface for our application by creating views around user sign up, sign in, and sign out.
-
-**Sign up**
-- Users can create a new account for our site.
-  - If sign up is successful, the user is taken to their profile page.
-  - If sign up fails, the user is taken back to the sign up page and given information about what went wrong.
-
-**Sign in**
-- Users with accounts can sign into their accounts.
-  - If sign in is successful, the user is taken to their profile page.
-  - If sign in fails, the user is taken back to the sign in page and given information about what went wrong.
-
-**Sign out**
-- After signing in, users can sign out.
-
-### Release 2: Associations
+### Release 1: Associations
 We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  It might be beneficial to create a visual representation of the database schema, based on the migrations.
 
 **Bid**
@@ -98,7 +81,7 @@ To tests these associations, run:
 rspec --tag user_associations
 ```
 
-### Release 3: Additional Model Behaviors
+### Release 2: Additional Model Behaviors
 Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `user`). 
 
 **Auction Class**
@@ -121,7 +104,7 @@ To tests these behaviors, run:
 rspec --tag user_behaviors
 ```
 
-### Release 4: Model Validations
+### Release 3: Model Validations
 We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  
 
 **Auction**
@@ -156,6 +139,23 @@ To tests these validations, run:
 ```
 rspec --tag user_validations
 ```
+
+### Release 4: User Authentication
+We'll begin building the interface for our application by creating views around user sign up, sign in, and sign out.
+
+**Sign up**
+- Users can create a new account for our site.
+  - If sign up is successful, the user is taken to their profile page.
+  - If sign up fails, the user is taken back to the sign up page and given information about what went wrong.
+
+**Sign in**
+- Users with accounts can sign into their accounts.
+  - If sign in is successful, the user is taken to their profile page.
+  - If sign in fails, the user is taken back to the sign in page and given information about what went wrong.
+
+**Sign out**
+- After signing in, users can sign out.
+
 
 ### Release 5: CRUD Auctions and Items
 Now we'll add some CRUD functionality around auctions.  Users create auctions to sell items.  There's no reason to create an item without an auction, and remember the validation that an auction's item must exist.
