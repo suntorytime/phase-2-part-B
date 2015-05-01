@@ -64,10 +64,5 @@ describe User do
       second_davey = build(:user, { username: "Davey" })
       expect(second_davey).to_not be_valid
     end
-
-    it "must choose a password that is at least eight characters long" do
-      user_with_short_password = build(:user, { password: "1short7" })
-      expect(user_with_short_password).to_not be_valid
-    end
   end
 end
