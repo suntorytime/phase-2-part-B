@@ -53,14 +53,20 @@ describe User do
 
   describe "validations" do
     it "must have a username" do
-      user_with_no_username = build(:user, { username: nil })
-      expect(user_with_no_username).to_not be_valid
+      godfrey = FactoryGirl.build(:user)
+      expect(godfrey).to be_valid
+
+      godfrey.username = nil
+      expect(godfrey).to_not be_valid
     end
 
     it "must have a unique username" do
-      davey = FactoryGirl.create(:user, { username: "Davey" })
-      second_davey = build(:user, { username: "Davey" })
+      davey = FactoryGirl.create(:user, { username: "davey" })
+      second_davey = build(:user, { username: "davey" })
       expect(second_davey).to_not be_valid
+
+      second_davey.username = "official_davey"
+      expect(second_davey).to be_valid
     end
   end
 end
