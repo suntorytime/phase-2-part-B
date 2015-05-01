@@ -1,7 +1,7 @@
 require_relative "../spec_helper"
 
 describe Bid do
-  describe "model associations" do
+  describe "model associations", { bid_associations: true } do
     it "returns the auction in which the bid was placed" do
       auction = FactoryGirl.build(:auction)
       bid = FactoryGirl.build(:bid, { auction: auction })

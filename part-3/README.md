@@ -64,19 +64,39 @@ We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Crea
 - `bid.auction` returns the auction in which the bid was placed.
 - `bid.bidder` returns the user who placed the bid.
 
+To tests these associations, from the root directory run:
+```
+rspec --tag bid_associations
+```
+
 **Auction**
 - `auction.bids` returns the bids placed for the auction.
 - `auction.bidders` returns the users who have bid in the auction.
 - `auction.item` returns the item listed in the auction.
 - `auction.lister` returns the user who created the auction
 
+To tests these associations, run:
+```
+rspec --tag auction_associations
+```
+
 **Item**
 - `item.auction` returns the auction in which the item is listed.
+
+To tests these associations, run:
+```
+rspec --tag item_associations
+```
 
 **User**
 - `user.listed_auctions` returns the auctions created by the user.
 - `user.bids` returns the bids the user has placed
 - `user.bid_in_auctions` returns the auctions for which the user has placed a bid
+
+To tests these associations, run:
+```
+rspec --tag user_associations
+```
 
 ### Release 3: Additional Model Behaviors
 Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `user`). 

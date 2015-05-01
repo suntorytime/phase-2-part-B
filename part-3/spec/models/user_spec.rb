@@ -1,7 +1,7 @@
 require_relative "../spec_helper"
 
 describe User do
-  describe "model associations" do
+  describe "model associations", { user_associations: true } do
     it "returns the auctions listed by the user" do
       algernon = FactoryGirl.build(:lister)
       algernons_auction = FactoryGirl.create(:auction_with_lister_and_item, { lister: algernon })

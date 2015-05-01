@@ -1,7 +1,7 @@
 require_relative "../spec_helper"
 
 describe Auction do
-  describe "model associations" do
+  describe "model associations", { auction_associations: true } do
     it "returns the listed item" do
       lamp = FactoryGirl.build(:item)
       auction = FactoryGirl.build(:auction, { item: lamp })
