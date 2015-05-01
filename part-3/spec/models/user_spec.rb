@@ -34,19 +34,19 @@ describe User do
 
     describe "#completed_listed_auctions" do
       it "returns the auctions listed by the user that have ended" do
-        expect(@tessie.completed_auctions).to match_array [@past_auction]
+        expect(@tessie.completed_listed_auctions).to match_array [@past_auction]
       end
     end
 
     describe "#live_listed_auctions" do
       it "returns the auctions listed by the user that are currently running" do
-        expect(@tessie.live_auctions).to match_array [@live_auction]
+        expect(@tessie.live_listed_auctions).to match_array [@live_auction]
       end
     end
 
     describe "#scheduled_listed_auctions" do
       it "returns the auctions listed by the user that have yet to begin" do
-        expect(@tessie.scheduled_auctions).to match_array [@future_auction]
+        expect(@tessie.scheduled_listed_auctions).to match_array [@future_auction]
       end
     end
   end
