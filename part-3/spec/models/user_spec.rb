@@ -10,7 +10,7 @@ describe User do
     end
 
     it "returns the bids that the user has made" do
-      algernon = FactoryGirl.build(:bidder)
+      algernon = FactoryGirl.create(:bidder)
       algernons_bid = FactoryGirl.create(:bid_with_bidder_and_auction, { bidder: algernon })
 
       expect(algernon.bids).to match_array [algernons_bid]
@@ -26,7 +26,7 @@ describe User do
 
   describe "additional model behaviors", { user_behaviors: true } do
     before(:each) do
-      @tessie = FactoryGirl.create(:user)
+      @tessie = FactoryGirl.create(:user_with_fake_password)
       @past_auction = FactoryGirl.create(:past_auction, { lister: @tessie })
       @live_auction = FactoryGirl.create(:live_auction, { lister: @tessie })
       @future_auction = FactoryGirl.create(:future_auction, { lister: @tessie })
@@ -61,7 +61,7 @@ describe User do
     end
 
     it "must have a unique username" do
-      davey = FactoryGirl.create(:user, { username: "davey" })
+      davey = FactoryGirl.create(:user_with_fake_password, { username: "davey" })
       second_davey = build(:user, { username: "davey" })
       expect(second_davey).to_not be_valid
 
