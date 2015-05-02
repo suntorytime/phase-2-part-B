@@ -33,7 +33,7 @@ We'll need to make sure that everything is set up before we begin working on the
 0. `$ bundle exec rake db:create`
 
 ### Release 0: Add User Model and Migration
-Create both an empty `User` model and a migration to create the corresponding `users` table.  Our `users` table will only need to store data related to authentication: a username and password.
+Create both an empty `User` model and a migration to create the corresponding `users` table.  Our `users` table will only need to store data related to authentication: a `username` and a non-plain-text password.
 
 After the model and migration have been written, run the migrations by running the following commands.
 
