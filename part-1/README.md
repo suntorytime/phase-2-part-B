@@ -53,3 +53,18 @@ Use the failing scenario and future-site user story from the *Summary* to guide 
 
 ## Conclusion
 Once all the tests have passed, you have completed Part 1 of the assessment. If you haven't done so already, commit your changes and move on to Part 2.
+
+
+## Screenshot Walkthrough
+
+Starting out, things are pretty normal.
+
+![](walkthrough/1-start.png)
+
+After clicking the "Share Your Thoughts" link, we should see the form (note: we don't have the header from the normal new post page).
+
+![](walkthrough/2-populatedform.png)
+
+Once we submit, our form goes away but we should have the post shown on the page.
+
+![](walkthrough/3-submittedform.png)
