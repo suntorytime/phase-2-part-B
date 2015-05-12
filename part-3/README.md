@@ -10,13 +10,13 @@ The required functionality of the site will be described in more detail in the *
 
 **Unregistered Users**
 - Register a new account.
-- Browse available items.
+- Browse auctions.
 
 **Registered Users**
-- Sign in and out
-- List items.
-- Browse available items.
-- Bid on available items that other users have listed.
+- Sign in and out.
+- List new auctions.
+- Browse auctions.
+- Place bids in auctions.
 - Have a profile showing their listing and bidding activity.
 
 ### Provided Code
@@ -29,76 +29,95 @@ Complete as much of this CRUD app as possible in the time allowed.  If time is r
 ### Pre-release:  Setup
 We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-3` directory of the phase 2 assessment.  Once there, run ...
 
-0. `$ brew update && brew install chromedriver`
 0. `$ bundle`
 0. `$ bundle exec rake db:create`
 
-### Release 0: Add Model and Migration
-Create both an empty `User` model and a migration to create the corresponding users table. You will need to add authentication for users later, what columns will you need to support this feature? If you are not sure, take a look at the validation section and corresponding tests.
+### Release 0: Add User Model and Migration
+Create both an empty `User` model and a migration to create the corresponding `users` table.  Our `users` table will only need to store data related to authentication: a `username` and a non-plain-text password.
+
+After the model and migration have been written, run the migrations by running the following commands.
 
 0. `$ bundle exec rake db:migrate`
 0. `$ bundle exec rake db:migrate RACK_ENV=test`
 
 ### Release 1: Associations
-We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  In addition, tests have been written for the associations of each model.  The tests for associations have been placed in an example group named *model associations*.
-
-The models and method calls are listed alphabetically; you might need to write them in a different order.
-
-**Auction**
-- `auction.bidders` returns the users who have bid in the auction.
-- `auction.bids` returns the bids placed for the auction.
-- `auction.item` returns the item listed in the auction.
-- `auction.lister` returns the user who created the auction
-
+We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  It might be beneficial to create a visual representation of the database schema, based on the migrations.
 
 **Bid**
 - `bid.auction` returns the auction in which the bid was placed.
 - `bid.bidder` returns the user who placed the bid.
-- `bid.item` returns the item on which the bid was placed.
-- `bid.receiver` returns the user who listed the item on which the bid was placed.
+
+To tests these associations, from the root directory run:
+```
+rspec --tag bid_associations
+```
+
+**Auction**
+- `auction.bids` returns the bids placed for the auction.
+- `auction.bidders` returns the users who have bid in the auction.
+- `auction.item` returns the item listed in the auction.
+- `auction.lister` returns the user who created the auction
+
+To tests these associations, run:
+```
+rspec --tag auction_associations
+```
 
 **Item**
 - `item.auction` returns the auction in which the item is listed.
-- `item.lister` returns the user who listed the item
+
+To tests these associations, run:
+```
+rspec --tag item_associations
+```
 
 **User**
-- `user.auctions` returns the auctions created by the user.
+- `user.listed_auctions` returns the auctions created by the user.
 - `user.bids` returns the bids the user has placed
-- `user.bid_on_items` returns the items on which the user has bid.
-- `user.listed_items` returns the items the user has listed.
+- `user.bid_in_auctions` returns the auctions for which the user has placed a bid
+
+To tests these associations, run:
+```
+rspec --tag user_associations
+```
 
 ### Release 2: Additional Model Behaviors
-Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `auction`).  Tests have been written for the behaviors of each model.  The tests for these behaviors have been placed in an example group named *additional model behaviors*.
-
-The models and method calls are listed alphabetically; it might be easier to write them in a different order.
+Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `user`). 
 
 **Auction Class**
 - `Auction.completed` returns all the auctions with end dates earlier than today's date.
 - `Auction.live` returns all the auctions with start dates earlier than or equal to today's date and end dates later than or equal to today's date.
 - `Auction.scheduled` returns all the auctions with start dates after today's date.
 
-**Auction Instances**
-- `auction.highest_bid` returns the bid with the highest amount for the auction.
-- `auction.highest_bidder` returns the user who placed the highest bid for the auction.
-
-**Bid Class**
-- `Bid.highest` returns the bid with the highest amount.
-- `Bid.highest_bidder` returns the user who placed the highest bid.
+To tests these behaviors, run:
+```
+rspec --tag auction_behaviors
+```
 
 **User Instances**
-- `user.completed_auctions` returns the auctions created by the user that have ended.
-- `user.live_auctions` returns the auctions created by the user that are currently running.
-- `user.scheduled_auctions` returns the auctions created by the user that have yet to begin.
+- `user.completed_listed_auctions` returns the auctions created by the user that have ended.
+- `user.live_listed_auctions` returns the auctions created by the user that are currently running.
+- `user.scheduled_listed_auctions` returns the auctions created by the user that have yet to begin.
+
+To tests these behaviors, run:
+```
+rspec --tag user_behaviors
+```
 
 ### Release 3: Model Validations
-We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  Tests have been written for the behaviors of each model.  The tests for these validations have been placed in an example group named *validations*.
+We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  
 
 **Auction**
 - An auction's item must exist.
 - An auction's lister must exist.
 - An auction must have a start date.
 - An auction must have an end date.
-- An auction's end date must be later than it's start date.
+- An auction's end date must be later than its start date.
+
+To tests these validations, run:
+```
+rspec --tag auction_validations
+```
 
 **Bid**
 - A bid's auction must exist.
@@ -107,17 +126,19 @@ We want to validate our models before attempting to write to the database.  Add 
 - A user can have only one bid per auction.
 - A user cannot bid in an auction they created.
 
-**Item**
-- An item must have a title.
-- An item must have a description.
-- An item must have a condition.
-- An item's condition must be *new*, *like new*, *good*, or *poor*.
+To tests these validations, run:
+```
+rspec --tag bid_validations
+```
 
 **User**
 - A user must have a username.
 - A user must have a unique username.
-- A user must choose a password that is at least eight characters long when creating an account.
 
+To tests these validations, run:
+```
+rspec --tag user_validations
+```
 
 ### Release 4: User Authentication
 We'll begin building the interface for our application by creating views around user sign up, sign in, and sign out.
@@ -135,17 +156,14 @@ We'll begin building the interface for our application by creating views around 
 **Sign out**
 - After signing in, users can sign out.
 
+
 ### Release 5: CRUD Auctions and Items
-Now we'll add some CRUD functionality around auctions and their items.  Users create auctions to sell items.  There's no reason to create an item without an auction.  But, remember the validation that an auction's item must exist.
+Now we'll add some CRUD functionality around auctions.  Users create auctions to sell items.  There's no reason to create an item without an auction, and remember the validation that an auction's item must exist.
 
 **Auctions**
 - Users can create auctions.
-- Users can edit auctions.
-- Users can delete auctions.
-
-**Items**
-- Users can create items.
-- Users can edit items.
+- Users can edit their own auctions.
+- Users can delete their own auctions.
 
 ### Release 6:  Auction Pages and Layout
 Let's add some pages for viewing auctions.  We'll make a page to display a single auction and a page where all the auctions are listed.  While we're at it, let's do some work on the general layout of our site.

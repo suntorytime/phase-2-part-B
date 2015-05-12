@@ -1,84 +1,78 @@
 require_relative "../spec_helper"
 
 describe Bid do
-  describe "model associations" do
-    before(:each) do
-      @erma = FactoryGirl.create(:bidder, { username: "Erma" })
-      @emilia = FactoryGirl.create(:lister, { username: "Emilia" })
-      @item = FactoryGirl.create(:item)
-      @auction = FactoryGirl.create(:auction, { lister: @emilia, item: @item })
-
-      @bid = FactoryGirl.create(:bid, { auction: @auction, bidder: @erma })
-    end
-
+  describe "model associations", { bid_associations: true } do
     it "returns the auction in which the bid was placed" do
-      expect(@bid.auction).to eq @auction
+      auction = FactoryGirl.build(:auction)
+      bid = FactoryGirl.build(:bid, { auction: auction })
+
+      expect(bid.auction).to eq auction
     end
 
     it "returns the user who placed the bid" do
-      expect(@bid.bidder).to eq @erma
-    end
+      erma = FactoryGirl.build(:bidder)
+      bid = FactoryGirl.build(:bid, { bidder: erma })
 
-    it "returns the item in the auction in which the bid was placed" do
-      expect(@bid.item).to eq @item
-    end
-
-    it "returns the user who listed the auction in which the bid was placed" do
-      expect(@bid.receiver).to eq @emilia
+      expect(bid.bidder).to eq erma
     end
   end
 
-  describe "additional model behaviors" do
-    before(:each) do
-      @major = FactoryGirl.create(:bidder)
-      @caren = FactoryGirl.create(:bidder)
-
-      @high_bid = FactoryGirl.create(:bid, { amount: 100.00, bidder: @major })
-      @low_bid = FactoryGirl.create(:bid, { amount: 1.00, bidder: @caren })
-    end
-
-    describe ".highest" do
-      it "returns the bid with the highest amount" do
-        expect(Bid.highest).to eq @high_bid
-      end
-    end
-
-    describe ".highest_bidder" do
-      it "returns the user who placed the highest bid" do
-        expect(Bid.highest_bidder).to eq @major
-      end
-    end
-  end
-
-  describe "validations" do
-    it "auction must exist" do
-      bid_with_no_auction = build(:bid, { auction: nil })
-      expect(bid_with_no_auction).to_not be_valid
-    end
-
-    it "bidder must exist" do
-      bid_with_no_bidder = build(:bid, { bidder: nil })
-      expect(bid_with_no_bidder).to_not be_valid
+  describe "validations", { bid_validations: true } do
+    it "can be valid" do
+      bid = FactoryGirl.build(:bid_with_bidder_and_auction)
+      expect(bid).to be_valid
     end
 
     it "must have an amount" do
-      bid_with_no_amount = build(:bid, { amount: nil })
-      expect(bid_with_no_amount).to_not be_valid
+      bid = FactoryGirl.build(:bid_with_bidder_and_auction)
+      expect(bid).to be_valid
+
+      bid.amount = nil
+      expect(bid).to_not be_valid
+    end
+
+    it "auction must exist" do
+      bid = FactoryGirl.build(:bid_without_auction)
+      expect(bid).to_not be_valid
+
+      bid.auction = FactoryGirl.build(:auction_with_lister_and_item)
+      expect(bid).to be_valid
+    end
+
+    it "bidder must exist" do
+      bid = FactoryGirl.build(:bid)
+      bid.auction = FactoryGirl.build(:auction_with_lister_and_item)
+      expect(bid).to_not be_valid
+
+      bid.bidder = FactoryGirl.build(:bidder)
+      expect(bid).to be_valid
     end
 
     it "a user can have only one bid per auction" do
-      josephina = FactoryGirl.create(:bidder)
-      auction = FactoryGirl.create(:auction)
-      original_bid = FactoryGirl.create(:bid, { bidder: josephina, auction: auction })
-      repeat_bid = build(:bid, { bidder: josephina, auction: auction })
-      expect(repeat_bid).to_not be_valid
+      josephina = FactoryGirl.build(:bidder)
+      clothes_auction = FactoryGirl.build(:auction_with_lister_and_item)
+
+      original_clothes_bid = FactoryGirl.create(:bid, { bidder: josephina, auction: clothes_auction })
+      expect(original_clothes_bid).to be_valid
+
+      repeat_clothes_bid = FactoryGirl.build(:bid, { bidder: josephina, auction: clothes_auction })
+      expect(repeat_clothes_bid).to_not be_valid
+
+      tools_auction = FactoryGirl.build(:auction_with_lister_and_item)
+      tools_auction_bid = FactoryGirl.build(:bid, { bidder: josephina, auction: tools_auction })
+      expect(tools_auction_bid).to be_valid
     end
 
     it "A user cannot bid in an auction they listed" do
-      kristie = FactoryGirl.create(:lister)
-      auction = FactoryGirl.create(:auction, { lister: kristie })
-      bid_in_own_auction = build(:bid, { bidder: kristie, auction: auction })
-      expect(bid_in_own_auction).to_not be_valid
+      kristie = FactoryGirl.build(:lister)
+      kristies_auction = FactoryGirl.build(:auction_with_lister_and_item, { lister: kristie })
+
+      bid_from_lister = FactoryGirl.build(:bid, { bidder: kristie, auction: kristies_auction })
+      expect(bid_from_lister).to_not be_valid
+
+      gale = FactoryGirl.build(:bidder)
+      bid_from_other_user = FactoryGirl.build(:bid, { bidder: gale, auction: kristies_auction })
+      expect(bid_from_other_user).to be_valid
     end
   end
 end

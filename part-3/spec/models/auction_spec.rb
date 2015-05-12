@@ -1,36 +1,37 @@
 require_relative "../spec_helper"
 
 describe Auction do
-  describe "model associations" do
-    before(:each) do
-      @tom = FactoryGirl.create(:user, { username: "tom" })
-      @jodie = FactoryGirl.create(:user, { username: "jodie" })
-
-      @lamp = FactoryGirl.create(:item, { title: "lamp" })
-
-      @auction = FactoryGirl.create(:auction, { lister: @tom, item: @lamp })
-
-      @bid = FactoryGirl.create(:bid, { bidder: @jodie, auction: @auction })
-    end
-
+  describe "model associations", { auction_associations: true } do
     it "returns the listed item" do
-      expect(@auction.item).to eq @lamp
+      lamp = FactoryGirl.build(:item)
+      auction = FactoryGirl.build(:auction, { item: lamp })
+
+      expect(auction.item).to eq lamp
     end
 
     it "returns the user who listed the auction" do
-      expect(@auction.lister).to eq @tom
+      tom = FactoryGirl.build(:lister)
+      auction = FactoryGirl.build(:auction, { lister: tom })
+
+      expect(auction.lister).to eq tom
     end
 
     it "returns the bids placed" do
-      expect(@auction.bids).to match_array [@bid]
+      bids = [FactoryGirl.build(:bid), FactoryGirl.build(:bid)]
+      auction = FactoryGirl.build(:auction, { bids: bids })
+
+      expect(auction.bids).to match_array bids
     end
 
     it "returns the users who've bid" do
-      expect(@auction.bidders).to match_array [@jodie]
+      jodie = FactoryGirl.build(:bidder)
+      auction = FactoryGirl.build(:auction, { bidders: [jodie] })
+
+      expect(auction.bidders).to match_array [jodie]
     end
   end
 
-  describe "additional model behaviors" do
+  describe "additional model behaviors", { auction_behaviors: true } do
     describe "class behaviors" do
       before(:each) do
         @past_auction = FactoryGirl.create(:past_auction)
@@ -56,56 +57,46 @@ describe Auction do
         end
       end
     end
+  end
 
-    describe "instance behaviors" do
-      before(:each) do
-        @juan = FactoryGirl.create(:user)
-        @sally = FactoryGirl.create(:user)
-
-        @auction = FactoryGirl.create(:auction)
-
-        @high_bid = FactoryGirl.create(:bid, { amount: 50.00, auction: @auction, bidder: @juan })
-        @low_bid = FactoryGirl.create(:bid, { amount: 10.00, auction: @auction, bidder: @sally })
-      end
-
-      describe "#highest_bid" do
-        it "returns the highest bid for the auction" do
-          expect(@auction.highest_bid).to eq @high_bid
-        end
-      end
-
-      describe "#highest_bidder" do
-        it "returns the user who placed the highest bid for the auction" do
-          expect(@auction.highest_bidder).to eq @juan
-        end
-      end
+  describe "validations", { auction_validations: true } do
+    it "can be valid" do
+      valid_auction = FactoryGirl.build(:auction_with_lister_and_item)
+      expect(valid_auction).to be_valid
     end
 
-    describe "validations" do
-      it "item must exist" do
-        auction_without_an_item = build(:auction, { item: nil })
-        expect(auction_without_an_item).to_not be_valid
-      end
+    it "item must exist" do
+      auction = build(:auction_without_item)
+      expect(auction).to_not be_valid
+    end
 
-      it "lister must exist" do
-        auction_without_a_lister = build(:auction, { lister: nil })
-        expect(auction_without_a_lister).to_not be_valid
-      end
+    it "lister must exist" do
+      auction = build(:auction_without_lister)
+      expect(auction).to_not be_valid
+    end
 
-      it "must have a start date and time" do
-        auction_without_start_date = build(:auction, { start_date: nil })
-        expect(auction_without_start_date).to_not be_valid
-      end
+    it "must have a start date" do
+      auction = build(:auction_with_lister_and_item)
+      expect(auction).to be_valid
 
-      it "must have an end date and time" do
-        auction_without_end_date = build(:auction, { end_date: nil })
-        expect(auction_without_end_date).to_not be_valid
-      end
+      auction.start_date = nil
+      expect(auction).to_not be_valid
+    end
 
-      it "end date and time must be later than start date and time" do
-        auction_with_end_date_before_start_date = build(:auction, { start_date: Time.now, end_date: Faker::Time.backward(5) })
-        expect(auction_with_end_date_before_start_date).to_not be_valid
-      end
+    it "must have an end date" do
+      auction = build(:auction_with_lister_and_item)
+      expect(auction).to be_valid
+
+      auction.end_date = nil
+      expect(auction).to_not be_valid
+    end
+
+    it "end date and time must be later than start date and time" do
+      auction = build(:auction_with_lister_and_item)
+      expect(auction).to be_valid
+
+      auction.end_date = auction.start_date - 5.days
+      expect(auction).to_not be_valid
     end
   end
 end
