@@ -44,7 +44,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    rack (1.6.0)
+    rack (1.5.2)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -100,6 +100,7 @@ DEPENDENCIES
   faker
   pg
   poltergeist
+  rack (= 1.5.2)
   rack-test
   rake
   rspec (~> 3.0)
