@@ -165,6 +165,8 @@ Now we'll add some CRUD functionality around auctions.  Users create auctions to
 - Users can edit their own auctions.
 - Users can delete their own auctions.
 
+  *Note*: When creating and or editing an auction, you'll need to create forms that allow you to enter dates. The HTML5 datetime input type is tricky to use with ActiveRecord. Consider using something like `<input type="text" name="my-date">` in the markup. When filling in the field, use the `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format (e.g. 2015-04-01 14:30:00).
+
 ### Release 6:  Auction Pages and Layout
 Let's add some pages for viewing auctions.  We'll make a page to display a single auction and a page where all the auctions are listed.  While we're at it, let's do some work on the general layout of our site.
 
