@@ -12,8 +12,8 @@ FactoryGirl.define do
 
       after(:build) do |this_new_user|
         assumed_attributes = ["id", "username", "created_at", "updated_at"]
-        password_attribute =  this_new_user.attributes.keys.find { |attr| attr =~ /password/ } || this_new_user.attributes.keys - assumed_attributes.first
-        this_new_user.send(password_attribute + "=", "some hash")
+        password_attribute =  this_new_user.attributes.keys.find { |attr| attr =~ /password/ } || (this_new_user.attributes.keys - assumed_attributes).first
+        this_new_user.send(password_attribute + "=", "some hash") unless password_attribute.nil?
       end
     end
   end
