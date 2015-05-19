@@ -30,7 +30,12 @@ Feature tests are provided in Part 1 of the assessment to guide our enhancement 
 ### Pre-release:  Setup
 We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-1` directory of the phase 2 assessment.  Once there, run ...
 
+#### Install PhantomJS
+
 0. `$ brew update && brew install phantomjs`
+
+#### Set up your test database
+
 0. `$ bundle`
 0. `$ bundle exec rake db:create`
 0. `$ bundle exec rake db:migrate`
