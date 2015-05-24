@@ -40,6 +40,24 @@ If both constraints are met, the user should be considered logged in and redirec
 
 If either constraint is not met, the user should see the registration form and the associated error messages.
 
+### Release 1: Login/Logout
+#### Login
+Given there is a previously registered user and they are not currently logged in:
+
+On the home page, there should be a link to login.
+When a user clicks on this link they should be taken to a page with a form to enter their credentials.
+
+If the credentials match, the user should be taken back to the homepage and the login link should be replaced with a logout link.
+
+If the credentials do not match, the user should see the login form and an error message stating the credentials were not valid.
+
+### Logout
+Given there is a previously registered user and they are currently logged in:
+
+On the home page there should be a link to logout.
+When the user clicks on the logout link they should be taken to the home page and the links "Register" and "Login" should both be visible.
+
+
 ### Release 1: Associations
 We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  It might be beneficial to create a visual representation of the database schema, based on the migrations.
 
