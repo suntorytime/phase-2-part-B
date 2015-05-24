@@ -8,19 +8,17 @@ We'll be building a simplified version of a blind auction site—in a blind auct
 
 The required functionality of the site will be described in more detail in the *Releases* section, but here's a basic overview.
 
+**All Users**
+- Browse available items.
+
 **Unregistered Users**
 - Register a new account.
-- Browse auctions.
 
 **Registered Users**
 - Sign in and out.
-- List new auctions.
-- Browse auctions.
-- Place bids in auctions.
+- List new items.
+- Place bids on items.
 - Have a profile showing their listing and bidding activity.
-
-### Provided Code
-For this part of the assessment, you are provided with a Sinatra skeleton.  All but one of the migrations have been provided for you.  Some empty models have also been provided, but you will need to create another.
 
 ### Completing the App
 Complete as much of this CRUD app as possible in the time allowed.  If time is running out and it looks like the app will not be completed, continue to work through the releases in order and complete as much as possible. Be sure to ask questions, if you find yourself stuck.
@@ -32,13 +30,15 @@ We'll need to make sure that everything is set up before we begin working on the
 0. `$ bundle`
 0. `$ bundle exec rake db:create`
 
-### Release 0: Add User Model and Migration
-Create both an empty `User` model and a migration to create the corresponding `users` table.  Our `users` table will only need to store data related to authentication: a `username` and a non-plain-text password.
+### Release 0: User Registration
+Users will need to register for a new account. Create a link on the home page that will take them to a page where they can enter their desired username and password. There are a two constraints to this feature:
 
-After the model and migration have been written, run the migrations by running the following commands.
+1. The username must be unique
+1. The password must be at least 6 characters long
 
-0. `$ bundle exec rake db:migrate`
-0. `$ bundle exec rake db:migrate RACK_ENV=test`
+If both constraints are met, the user should be considered logged in and redirected to the home page where all references to "Register" removed.
+
+If either constraint is not met, the user should see the registration form and the associated error messages.
 
 ### Release 1: Associations
 We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  It might be beneficial to create a visual representation of the database schema, based on the migrations.
@@ -82,7 +82,7 @@ rspec --tag user_associations
 ```
 
 ### Release 2: Additional Model Behaviors
-Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `user`). 
+Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `user`).
 
 **Auction Class**
 - `Auction.completed` returns all the auctions with end dates earlier than today's date.
