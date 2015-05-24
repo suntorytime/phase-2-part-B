@@ -44,18 +44,34 @@ If either constraint is not met, the user should see the registration form and t
 #### Login
 Given there is a previously registered user and they are not currently logged in:
 
-On the home page, there should be a link to login.
+On the home page, create a link to login.
 When a user clicks on this link they should be taken to a page with a form to enter their credentials.
 
 If the credentials match, the user should be taken back to the homepage and the login link should be replaced with a logout link.
 
 If the credentials do not match, the user should see the login form and an error message stating the credentials were not valid.
 
-### Logout
+#### Logout
 Given there is a previously registered user and they are currently logged in:
 
-On the home page there should be a link to logout.
+On the home page create a link to logout.
 When the user clicks on the logout link they should be taken to the home page and the links "Register" and "Login" should both be visible.
+
+### Release 2: Profile Page: Create Items
+The users profile page is where users are able to manage their listed items. We'll start off by giving them the ability to add an item and then work through the remaining CRUD actions.
+
+Given the registered user is signed in:
+
+On the home page create a link to the users profile page.
+When the user clicks on the profile link they should be taken to their profile page.
+
+Create a link on this page to add an item to the auction site. The item should include things like a name or title, description, when the user would like the auction to start and when it should stop.
+
+  *Note*: When creating and or editing an item, you'll need to create forms that allow you to enter dates. The HTML5 datetime input type is tricky to use with ActiveRecord. Consider using something like `<input type="text" name="my-date">` in the markup. When filling in the field, use the `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format (e.g. 2015-04-01 14:30:00).
+
+After submitting an item the user should be back on their profile page.
+
+
 
 
 ### Release 1: Associations
@@ -183,7 +199,6 @@ Now we'll add some CRUD functionality around auctions.  Users create auctions to
 - Users can edit their own auctions.
 - Users can delete their own auctions.
 
-  *Note*: When creating and or editing an auction, you'll need to create forms that allow you to enter dates. The HTML5 datetime input type is tricky to use with ActiveRecord. Consider using something like `<input type="text" name="my-date">` in the markup. When filling in the field, use the `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format (e.g. 2015-04-01 14:30:00).
 
 ### Release 6:  Auction Pages and Layout
 Let's add some pages for viewing auctions.  We'll make a page to display a single auction and a page where all the auctions are listed.  While we're at it, let's do some work on the general layout of our site.
