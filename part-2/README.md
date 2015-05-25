@@ -1,7 +1,7 @@
-# Part 1:  AJAX
+# Part 2:  AJAX
 
 ## Summary
-In Part 1 we'll take a functioning Sinatra application and enhance the user experience by adding some AJAX calls.
+In Part 2 we'll take a functioning Sinatra application and enhance the user experience by adding some AJAX calls.
 
 ### User Stories
 **Current Site**.  The application is a simple site where users can write posts.  If a user wanted to write a post, here's the process.
@@ -24,11 +24,11 @@ In Part 1 we'll take a functioning Sinatra application and enhance the user expe
 8. The "Share Your Thoughts" link is again visible.
 
 ### Testing
-Feature tests are provided in Part 1 of the assessment to guide our enhancement efforts. These types of tests might be unfamiliar.  We don't need to understand how to set up or write such tests.  We'll just use them as a guide.
+Feature tests are provided in Part 2 of the assessment to guide our enhancement efforts. These types of tests might be unfamiliar.  We don't need to understand how to set up or write such tests.  We'll just use them as a guide.
 
 ## Releases
 ### Pre-release:  Setup
-We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-1` directory of the phase 2 assessment.  Once there, run ...
+We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-2` directory of the phase 2 assessment.  Once there, run ...
 
 #### Install PhantomJS
 
@@ -57,7 +57,7 @@ $ bundle exec rspec
 Use the failing scenario and future-site user story from the *Summary* to guide your development until all the tests pass.
 
 ## Conclusion
-Once all the tests have passed, you have completed Part 1 of the assessment. If you haven't done so already, commit your changes and move on to Part 2.
+Once all the tests have passed, you have completed Part 2 of the assessment. If you haven't done so already, commit your changes and move on to Part 3.
 
 
 ## Screenshot Walkthrough
