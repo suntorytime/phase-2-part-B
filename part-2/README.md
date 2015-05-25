@@ -1,28 +1,75 @@
-# Part 2: JavaScript Objects
+# Part 1:  AJAX
+
 ## Summary
-In Part 2 of the assessment, we're going to write JavaScript.  Specifically, we're going to define a pair of custom objects:  `Student` and `Classroom`.  Each of these custom objects will have properties and behaviors specific to itself.  Tests have been written to guide you through the development of each object.
+In Part 1 we'll take a functioning Sinatra application and enhance the user experience by adding some AJAX calls.
 
-### Reading Jasmine Tests
-The tests describing the behaviors of our custom objects have been written using Jasmine, which might be unfamiliar to you.  That's perfectly fine.  We won't be writing any Jasmine tests today—just reading them.  Jasmine's syntax is very similar to RSpec's; we'll see `describe()` and `it()`—only in JavaScript, not Ruby.  When we call either of these functions, instead of passing a block as we would in Ruby, we'll pass a function.
+### User Stories
+**Current Site**.  The application is a simple site where users can write posts.  If a user wanted to write a post, here's the process.
 
-The files containing the tests are located within the `spec/` directory; the files are named `student-spec.js` and `classroom-spec.js`.  Read through them as you need to.
+1. User visits the site root.
+2. User clicks on the "Share Your Thoughts" link.
+3. User is taken to a new page with a form.
+4. User fills out and submits the form.
+5. User is taken to a new page where the saved post is displayed.
 
-### Running Jasmine Tests
-We won't run the tests from the command line.  Instead we'll run them in the browser, by opening the file `SpecRunner.html`.  This HTML file loads the Jasmine JavaScript library, the application code that we'll write, and the files containing the tests.  It runs the tests and then displays the outcome of the tests in the browser.
+**Future Site**. Our enhancements will make it so the user never leaves the homepage.  All the requests will be AJAX requests, and we'll update the DOM based on the responses.  After the site is updated, here's what the user experience will be.
+
+1. User visits the site root.
+2. User clicks on the "Share Your Thoughts" link.
+3. The link is no longer visible on the page.
+4. In place of the link is the form for writing a new post.
+5. User fills out and submits the form.
+6. Details of the saved post are added to the DOM.
+7. The form is removed from the DOM.
+8. The "Share Your Thoughts" link is again visible.
+
+### Testing
+Feature tests are provided in Part 1 of the assessment to guide our enhancement efforts. These types of tests might be unfamiliar.  We don't need to understand how to set up or write such tests.  We'll just use them as a guide.
 
 ## Releases
-### Release 0: Student
-We'll start by focusing on the tests describing our student (see `spec/student_spec.js`).  To run the tests, open the file `SpecRunner.html` in a browser. On the command line navigate to the `part-2` directory and then run ...
+### Pre-release:  Setup
+We'll need to make sure that everything is set up before we begin working on the application.  From the command line, navigate to the `part-1` directory of the phase 2 assessment.  Once there, run ...
+
+#### Install PhantomJS
+
+0. `$ brew update && brew install phantomjs`
+
+#### Set up your test database
+
+0. `$ bundle`
+0. `$ bundle exec rake db:create`
+0. `$ bundle exec rake db:migrate`
+0. `$ bundle exec rake db:migrate RACK_ENV=test`
+
+### Release 0: AJAX
+Now we'll take our application and enhance its functionality.  But, we don't want to break our functioning site in the process.  Fortunately, there are tests to help us.  Tests have been written to describe the `Post` class (see `spec/models/post_spec.rb`) and the feature of writing a new post (see `spec/features/writing_a_post_spec.rb`).
+
+The feature tests for writing a new post include two contexts:  without javascript and with javascript.  The code you are provided with will pass the scenario where javascript is not being used.  The with-javascript scenario fails with just the provided code.  
+
+Our task is to make the with-javascript scenario pass.  When our site is functioning properly with AJAX, both scenarios should pass.  Don't break the without-javascript test to pass the with-javascript test.
+
+To run the tests and see the with-javascript feature test fail, from the command line, run ...
 
 ```
-$ open SpecRunner.html
+$ bundle exec rspec 
 ```
-... this should open the HTML file in the default browser.
 
-When the page loads, the tests will run—to begin, all of them will be failing.  Writing code in the file `student.js`, work through the tests until all of the tests for the student pass.
-
-### Release 1: Classroom
-Once the tests for the custom student object pass, move on to the classroom object type.  Write the code for the custom classroom object in the file `classroom.js`.  Work through the tests until all of the tests pass.
+Use the failing scenario and future-site user story from the *Summary* to guide your development until all the tests pass.
 
 ## Conclusion
-Once all the tests have passed, you have completed Part 2 of the assessment. If you haven't done so already, commit your changes and move on to Part 3.
+Once all the tests have passed, you have completed Part 1 of the assessment. If you haven't done so already, commit your changes and move on to Part 2.
+
+
+## Screenshot Walkthrough
+
+Starting out, things are pretty normal.
+
+![](walkthrough/1-start.png)
+
+After clicking the "Share Your Thoughts" link, we should see the form (note: we don't have the header from the normal new post page).
+
+![](walkthrough/2-populatedform.png)
+
+Once we submit, our form goes away but we should have the post shown on the page.
+
+![](walkthrough/3-submittedform.png)
