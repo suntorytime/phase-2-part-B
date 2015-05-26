@@ -57,22 +57,48 @@ Given there is a previously registered user and they are currently logged in:
 On the home page create a link to logout.
 When the user clicks on the logout link they should be taken to the home page and the links "Register" and "Login" should both be visible.
 
-### Release 2: Profile Page: Create Items
+### Release 2: CRUD'ing a Resorouce
 The users profile page is where users are able to manage their listed items. We'll start off by giving them the ability to add an item and then work through the remaining CRUD actions.
 
+#### Creating Items
 Given the registered user is signed in:
 
-On the home page create a link to the users profile page.
+On the home page create a link to the user's profile page.
 When the user clicks on the profile link they should be taken to their profile page.
 
-Create a link on this page to add an item to the auction site. The item should include things like a name or title, description, when the user would like the auction to start and when it should stop.
+Create a link on this page to add an item to the auction site. The item should include things like a name and/or title, description, when the user would like the auction to start and when it should stop.
 
   *Note*: When creating and or editing an item, you'll need to create forms that allow you to enter dates. The HTML5 datetime input type is tricky to use with ActiveRecord. Consider using something like `<input type="text" name="my-date">` in the markup. When filling in the field, use the `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format (e.g. 2015-04-01 14:30:00).
 
 After submitting an item the user should be back on their profile page.
 
+#### Reading Items
+Given the registered user is signed in and has previously created multiple items.
+
+Create a section on the profile page to display all the items. This section should not include the long form description of the item.
+
+#### Updating Items
+Given the registered user is signed in and has previously created multiple items.
+
+On the profile page, create an edit link associated to each of the items the user has created. This link should only be visible if the user logged in is the user that created the item.
+
+When the user clicks the edit link associated to the item, they should be taken to a page to edit that item's details. After submitting this information the user should be taken back to their profile page and see the item's updates should be reflected on the page.
+
+#### Deleting Items
+Given the registered user is signed in and has previously created multiple items.
+
+On the profile page, create a delete link associated to each of the items the user has created. Just like in the update section, this link should only be visible if the user logged in is the user that created the item.
+
+When the user clicks the delete link, the user profile page should reload and the item should no longer be visible.
+
+### Release 3: Bidding
 
 
+
+
+
+
+================Ignore below this line=========================
 
 ### Release 1: Associations
 We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  It might be beneficial to create a visual representation of the database schema, based on the migrations.
