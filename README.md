@@ -6,8 +6,8 @@ In this assessment, you are asked to complete three challenges. The first two ch
 
 Do not build more complexity than is explicitly required.
 
-- [Part 1 - AJAX](part-1/)
-- [Part 2 - JavaScript Objects](part-2/)
+- [Part 1 - JavaScript Objects](part-1/)
+- [Part 2 - AJAX](part-2/)
 - [Part 3 - Build a CRUD App](part-3/)
 
 
