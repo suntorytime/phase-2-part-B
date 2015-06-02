@@ -25,9 +25,9 @@ Get up and take a walk.
 
 Set a timer and sit quietly with your eyes closed for five minutes. Listen to your breathing.
 
-Done all of that? Awesome. Take a really, really deep breath. No really, deeper. Hold it. Lungs are weird. Seriously, like you have this bag in your chest full of whatever happened to be nearby. Breath out. Draw a picture of a lung on a sticky. Think about how weird it is.
+Done all of that? Awesome. Take a really, really deep breath. No really, deeper. Hold it. Lungs are weird. Seriously, like you have this bag in your chest full of whatever happened to be nearby. Breathe out. Draw a picture of a lung on a sticky. Think about how weird it is.
 
-Wiggle your toes. Notice how they feel right now. Which toes feels the best? *Sensory input can engage parts of your brain that are less emotional*.
+Wiggle your toes. Notice how they feel right now. Which toes feel the best? *Sensory input can engage parts of your brain that are less emotional*.
 
 What's the number of toes in this room divided by the number of lungs? *Math engages parts of your brain that aren't worked up. Doing simple math can reset your brain.* Try it.
 
