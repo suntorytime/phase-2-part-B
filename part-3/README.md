@@ -8,19 +8,17 @@ We'll be building a simplified version of a blind auction site—in a blind auct
 
 The required functionality of the site will be described in more detail in the *Releases* section, but here's a basic overview.
 
+**All Users**
+- Browse available items.
+
 **Unregistered Users**
 - Register a new account.
-- Browse auctions.
 
 **Registered Users**
 - Sign in and out.
-- List new auctions.
-- Browse auctions.
-- Place bids in auctions.
+- List new items.
+- Place bids on items.
 - Have a profile showing their listing and bidding activity.
-
-### Provided Code
-For this part of the assessment, you are provided with a Sinatra skeleton.  All but one of the migrations have been provided for you.  Some empty models have also been provided, but you will need to create another.
 
 ### Completing the App
 Complete as much of this CRUD app as possible in the time allowed.  If time is running out and it looks like the app will not be completed, continue to work through the releases in order and complete as much as possible. Be sure to ask questions, if you find yourself stuck.
@@ -32,163 +30,101 @@ We'll need to make sure that everything is set up before we begin working on the
 0. `$ bundle`
 0. `$ bundle exec rake db:create`
 
-### Release 0: Add User Model and Migration
-Create both an empty `User` model and a migration to create the corresponding `users` table.  Our `users` table will only need to store data related to authentication: a `username` and a non-plain-text password.
+### Release 0: User Registration
+Users will need to register for a new account. Create a link on the home page that will take them to a page where they can enter their desired username and password. There are a two constraints to this feature:
 
-After the model and migration have been written, run the migrations by running the following commands.
+1. The username must be unique
+1. The password must be at least 6 characters long
 
-0. `$ bundle exec rake db:migrate`
-0. `$ bundle exec rake db:migrate RACK_ENV=test`
+If both constraints are met, the user should be considered logged in and redirected to the home page where all references to "Register" removed.
 
-### Release 1: Associations
-We will be working with four models: `Auction`, `Bid`, `Item`, and `User`.  Create the associations between the models based on the following descriptions.  It might be beneficial to create a visual representation of the database schema, based on the migrations.
+If either constraint is not met, the user should see the registration form and the associated error messages.
 
-**Bid**
-- `bid.auction` returns the auction in which the bid was placed.
-- `bid.bidder` returns the user who placed the bid.
+### Release 1: Login/Logout
+#### Login
+Given there is a previously registered user and they are not currently logged in:
 
-To tests these associations, from the root directory run:
-```
-rspec --tag bid_associations
-```
+On the home page, create a link to login.
+When a user clicks on this link they should be taken to a page with a form to enter their credentials.
 
-**Auction**
-- `auction.bids` returns the bids placed for the auction.
-- `auction.bidders` returns the users who have bid in the auction.
-- `auction.item` returns the item listed in the auction.
-- `auction.lister` returns the user who created the auction
+If the credentials match, the user should be taken back to the homepage and the login link should be replaced with a logout link.
 
-To tests these associations, run:
-```
-rspec --tag auction_associations
-```
+If the credentials do not match, the user should see the login form and an error message stating the credentials were not valid.
 
-**Item**
-- `item.auction` returns the auction in which the item is listed.
+#### Logout
+Given there is a previously registered user and they are currently logged in:
 
-To tests these associations, run:
-```
-rspec --tag item_associations
-```
+On the home page create a link to logout.
+When the user clicks on the logout link they should be taken to the home page and the links "Register" and "Login" should both be visible.
 
-**User**
-- `user.listed_auctions` returns the auctions created by the user.
-- `user.bids` returns the bids the user has placed
-- `user.bid_in_auctions` returns the auctions for which the user has placed a bid
+### Release 2: CRUD'ing a Resorouce
+The user's profile page is where users are able to manage their listed items. We'll start off by giving them the ability to add an item and then work through the remaining CRUD actions.
 
-To tests these associations, run:
-```
-rspec --tag user_associations
-```
+#### Creating Items
+Given the registered user is signed in:
 
-### Release 2: Additional Model Behaviors
-Once the associations have been written, let's add some additional behaviors to our models.  Some of the behaviors will be for the class itself (e.g., `Auction`) while others will be for instances (e.g., `user`). 
+On the home page create a link to the user's profile page.
+When the user clicks on the profile link they should be taken to their profile page.
 
-**Auction Class**
-- `Auction.completed` returns all the auctions with end dates earlier than today's date.
-- `Auction.live` returns all the auctions with start dates earlier than or equal to today's date and end dates later than or equal to today's date.
-- `Auction.scheduled` returns all the auctions with start dates after today's date.
+Create a link on this page to add an item to the auction site. The item should include things like a name and/or title, description, when the user would like the auction to start and when it should stop.
 
-To tests these behaviors, run:
-```
-rspec --tag auction_behaviors
-```
+  *Note*: When creating and or editing an item, you'll need to create forms that allow you to enter dates. The HTML5 datetime input type is tricky to use with ActiveRecord. Consider using something like `<input type="text" name="my-date">` in the markup. When filling in the field, use the `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format (e.g. 2015-04-01 14:30:00).
 
-**User Instances**
-- `user.completed_listed_auctions` returns the auctions created by the user that have ended.
-- `user.live_listed_auctions` returns the auctions created by the user that are currently running.
-- `user.scheduled_listed_auctions` returns the auctions created by the user that have yet to begin.
+After submitting an item the user should be back on their profile page.
 
-To tests these behaviors, run:
-```
-rspec --tag user_behaviors
-```
+#### Reading Items
+Given the registered user is signed in and has previously created multiple items:
 
-### Release 3: Model Validations
-We want to validate our models before attempting to write to the database.  Add validations to the models, according to the following descriptions.  
+Create a section on the profile page to display all the items. This section should not include the long form description of the item.
 
-**Auction**
-- An auction's item must exist.
-- An auction's lister must exist.
-- An auction must have a start date.
-- An auction must have an end date.
-- An auction's end date must be later than its start date.
+#### Updating Items
+Given the registered user is signed in and has previously created multiple items:
 
-To tests these validations, run:
-```
-rspec --tag auction_validations
-```
+On the profile page, create an edit link associated to each of the items the user has created. This link should only be visible if the user logged in is the user that created the item.
 
-**Bid**
-- A bid's auction must exist.
-- A bid's bidder must exist.
-- A bid must have an amount.
-- A user can have only one bid per auction.
-- A user cannot bid in an auction they created.
+When the user clicks the edit link associated to the item, they should be taken to a page to edit that item's details. After submitting this information the user should be taken back to their profile page and see the item's updates should be reflected on the page.
 
-To tests these validations, run:
-```
-rspec --tag bid_validations
-```
+#### Deleting Items
+Given the registered user is signed in and has previously created multiple items:
 
-**User**
-- A user must have a username.
-- A user must have a unique username.
+On the profile page, create a delete link associated to each of the items the user has created. Just like in the update section, this link should only be visible if the user logged in is the user that created the item.
 
-To tests these validations, run:
-```
-rspec --tag user_validations
-```
+When the user clicks the delete link, the user profile page should reload and the item should no longer be visible.
 
-### Release 4: User Authentication
-We'll begin building the interface for our application by creating views around user sign up, sign in, and sign out.
+### Release 3: Bidding
+Up until now, the home page has largely just contained links to allow the user to register or login, or if they were logged in, to logout. Now that users have the ability to create items for others to bid on, let's start filling in the homepage.
 
-**Sign up**
-- Users can create a new account for our site.
-  - If sign up is successful, the user is taken to their profile page.
-  - If sign up fails, the user is taken back to the sign up page and given information about what went wrong.
+#### Viewing Active Items
+Given there are multiple items previously created and at least a few of the items are currently active:
 
-**Sign in**
-- Users with accounts can sign into their accounts.
-  - If sign in is successful, the user is taken to their profile page.
-  - If sign in fails, the user is taken back to the sign in page and given information about what went wrong.
+Create a section on the home page to list the items that are currently available and active. To clarify, active means the items have start date on or before today and the end date is on or after today.
 
-**Sign out**
-- After signing in, users can sign out.
+#### Creating a Bid
+Given there are multiple items previously created, at least a few of the items are currently active, and the registered user is signed in:
 
+Make the name or title of the listed items in the home page a link. When the user clicks on a link for an item, they should be on a page that is displaying the details of the item. This will include the long form description and add a section on the page to display the current number of bidders.
 
-### Release 5: CRUD Auctions and Items
-Now we'll add some CRUD functionality around auctions.  Users create auctions to sell items.  There's no reason to create an item without an auction, and remember the validation that an auction's item must exist.
+Add a form to the item detail page that will allow the user to enter a bid amount. The submit button for the form should say "Place Bid".
 
-**Auctions**
-- Users can create auctions.
-- Users can edit their own auctions.
-- Users can delete their own auctions.
+When the user submits the bidding form, the page should reload. Where the form was located, there should be the text "Thank you for your bid. Good luck!" and the number of bidders section should be incremented by 1.
 
-  *Note*: When creating and or editing an auction, you'll need to create forms that allow you to enter dates. The HTML5 datetime input type is tricky to use with ActiveRecord. Consider using something like `<input type="text" name="my-date">` in the markup. When filling in the field, use the `YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS` format (e.g. 2015-04-01 14:30:00).
+#### Login or Register to Bid
+Given the current user is not logged in and the user is on the item details page for a previously created item.
 
-### Release 6:  Auction Pages and Layout
-Let's add some pages for viewing auctions.  We'll make a page to display a single auction and a page where all the auctions are listed.  While we're at it, let's do some work on the general layout of our site.
+In place of the bidding form, a user should see the text "To place a bid please login or register." Both login and register should be links taking the user to their respective pages.
 
-**Individual Auctions and Layout**
-- Create a page showing an individual auction.  The page should look similar to the [mockup](mockup-auction.png).
+### Release 4: Bid on Items on the Profile Page
+Now that we can bid on items, let's make it easy to keep track of the things we have bid on.
 
+#### Bid on Items
+Given the registered user is logged in, has previously placed bids on several items, and is currently on their profile page:
 
-**All Auctions**
-- Create a page showing a list of all live auctions.
+Create a section to display the items the user has bid on.
 
+#### Won Items
+Given the registered user is logged in, placed the highest bid on several items that are no longer active, and is currently on their profile page:
 
-### Release 7: CRUD Bids
-Let's add the functionality to allow signed-in users to bid on items.
-
-We'll modify the individual auction view page to support bidding.  If the user is not logged in, the view should remain as is.
-
-If a user is signed in ...
-  - If the user has not already bid in the auction, display a form for creating a new bid (see [mockup](mockup-auction-with-new-bid-form.png)).
-  - If the user has already bid in the auction, display the value of the bid, a form for editing the bid, and a form for deleting the bid (see [mockup](mockup-auction-with-edit-and-delete-forms.png)).
-
-### Release 8:  Profile Page
-We'll now develop the view for the user profile page.  On the profile page, the user should see the auctions that they've listed:  completed, live, and scheduled auctions.  They should also see the items on which they've bid: completed and live.  Follow the [mockup](mockup-profile-page.png).
+Create a section to display the items they have won. This is items that are no longer active (end date is before today) and the bid placed on the item is the highest of all the bidders.
 
 ## Conclusion
 Part-3 wraps up the assessment.  If you haven't already done so, commit your changes.  Please wait until the end of the assessment period to submit your solution.
