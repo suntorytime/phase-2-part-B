@@ -17,6 +17,9 @@ require 'database_cleaner'
 require 'factory_girl'
 require 'faker'
 
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, phantomjs_options: ['--ignore-ssl-errors=yes'])
+end
 Capybara.javascript_driver = :poltergeist
 
 path_to_factories = File.expand_path('../factories', __FILE__)
