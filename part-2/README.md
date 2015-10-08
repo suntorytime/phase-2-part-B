@@ -1,7 +1,7 @@
-# Part 2:  AJAX
+# AJAX
 
 ## Summary
-In Part 2 we'll take a functioning Sinatra application and enhance the user experience by adding some AJAX calls.
+In this part we'll take a functioning Sinatra application and enhance the user experience by adding some AJAX calls.
 
 ### User Stories
 **Current Site**.  The application is a simple site where users can write posts.  If a user wanted to write a post, here's the process.

@@ -1,6 +1,6 @@
-# Part 1: JavaScript Objects
+# JavaScript Objects
 ## Summary
-In Part 1 of the assessment, we're going to write JavaScript.  Specifically, we're going to define a pair of custom objects:  `Student` and `Classroom`.  Each of these custom objects will have properties and behaviors specific to itself.  Tests have been written to guide you through the development of each object.
+In this part of the assessment, we're going to write JavaScript.  Specifically, we're going to define a pair of custom objects:  `Student` and `Classroom`.  Each of these custom objects will have properties and behaviors specific to itself.  Tests have been written to guide you through the development of each object.
 
 ### Reading Jasmine Tests
 The tests describing the behaviors of our custom objects have been written using Jasmine, which might be unfamiliar to you.  That's perfectly fine.  We won't be writing any Jasmine tests today—just reading them.  Jasmine's syntax is very similar to RSpec's; we'll see `describe()` and `it()`—only in JavaScript, not Ruby.  When we call either of these functions, instead of passing a block as we would in Ruby, we'll pass a function.
@@ -25,4 +25,4 @@ When the page loads, the tests will run—to begin, all of them will be failing.
 Once the tests for the custom student object pass, move on to the classroom object type.  Write the code for the custom classroom object in the file `classroom.js`.  Work through the tests until all of the tests pass.
 
 ## Conclusion
-Once all the tests have passed, you have completed Part 1 of the assessment. If you haven't done so already, commit your changes and move on to Part 2.
+Once all the tests have passed, you have completed this part of the assessment. If you haven't done so already, commit your changes and move on to the next part of this challenge.
